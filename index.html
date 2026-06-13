@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Karl Ohlemann | Founder-Operator | Fractional CEO & CFO</title>
+<meta name="description" content="25+ year founder-operator, strategist, and fractional CEO/CFO. Scaled $0 to $30M ARR. Built $200M+ in cumulative revenue. Founder of KSIG Advisors."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{background:#0D1117;color:#F0EAD6;font-family:'Inter',sans-serif;overflow-x:hidden;}
+a{color:inherit;text-decoration:none;}
+ul{list-style:none;}
+
+/* TOKENS */
+:root{
+  --midnight:#0D1117;
+  --navy:#1C2B4A;
+  --gold:#C49A3C;
+  --gold-lt:#D4AA50;
+  --cream:#F0EAD6;
+  --steel:#7A8BA0;
+  --light-bg:#F5F0E8;
+  --light-text:#1A1A2E;
+}
+
+/* UTILITY */
+.display{font-family:'Playfair Display',serif;}
+.sans{font-family:'Inter',sans-serif;}
+.gold-bar{width:48px;height:2px;background:var(--gold);display:block;}
+.eyebrow{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold);font-weight:500;}
+.wrap{max-width:1080px;margin:0 auto;padding:0 40px;}
+.wrap-narrow{max-width:720px;margin:0 auto;padding:0 40px;}
+
+/* NAV */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  height:68px;padding:0 40px;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:background 0.3s,border-color 0.3s;
+  border-bottom:1px solid transparent;
+}
+#nav.scrolled{
+  background:rgba(13,17,23,0.97);
+  backdrop-filter:blur(10px);
+  border-color:rgba(196,154,60,0.15);
+}
+.nav-logo{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;letter-spacing:0.12em;color:var(--cream);}
+.nav-logo span{color:var(--gold);}
+.nav-links{display:flex;align-items:center;gap:28px;}
+.nav-link{font-size:12px;letter-spacing:0.05em;color:var(--steel);background:none;border:none;cursor:pointer;font-family:'Inter',sans-serif;transition:color 0.2s;}
+.nav-link:hover{color:var(--cream);}
+.nav-cta{font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);background:transparent;border:1px solid var(--gold);padding:9px 22px;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.2s;}
+.nav-cta:hover{background:var(--gold);color:var(--midnight);}
+
+/* BUTTONS */
+.btn-primary{display:inline-block;background:var(--gold);color:var(--midnight);font-family:'Inter',sans-serif;font-weight:600;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;padding:14px 36px;border:none;cursor:pointer;transition:background 0.2s;}
+.btn-primary:hover{background:var(--gold-lt);}
+.btn-outline{display:inline-block;background:transparent;color:var(--cream);font-family:'Inter',sans-serif;font-weight:400;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;padding:14px 36px;border:1px solid rgba(240,234,214,0.3);cursor:pointer;transition:all 0.2s;}
+.btn-outline:hover{border-color:var(--cream);}
+
+/* HERO */
+#hero{
+  min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 40px 80px;position:relative;overflow:hidden;
+  background:linear-gradient(160deg,var(--midnight) 0%,var(--navy) 100%);
+}
+.hero-glow{position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at 70% 30%,rgba(196,154,60,0.06) 0%,transparent 60%);pointer-events:none;}
+.hero-bg-text{
+  position:absolute;top:50%;left:-20px;transform:translateY(-50%);
+  font-family:'Playfair Display',serif;font-size:clamp(150px,28vw,340px);
+  font-weight:900;line-height:0.85;
+  color:rgba(196,154,60,0.035);user-select:none;pointer-events:none;
+  white-space:nowrap;
+}
+.hero-inner{position:relative;z-index:1;max-width:900px;}
+.hero-label{margin-bottom:32px;}
+.hero-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(52px,9vw,110px);font-weight:900;line-height:0.92;
+  color:var(--cream);margin-bottom:36px;letter-spacing:-0.02em;
+}
+.hero-title em{font-style:italic;color:var(--gold);}
+.hero-bar{margin-bottom:36px;}
+.hero-sub{font-size:17px;line-height:1.75;color:var(--steel);max-width:500px;margin-bottom:48px;font-weight:300;}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap;}
+.hero-scroll{position:absolute;bottom:40px;right:40px;display:flex;flex-direction:column;align-items:center;gap:8px;}
+.hero-scroll-text{font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:var(--steel);writing-mode:vertical-rl;}
+.hero-scroll-line{width:1px;height:40px;background:var(--gold);}
+
+/* MANIFESTO */
+#manifesto{padding:80px 40px;background:var(--navy);}
+.manifesto-inner{max-width:840px;margin:0 auto;}
+.manifesto-p{
+  font-family:'Playfair Display',serif;font-size:clamp(20px,2.5vw,28px);
+  font-weight:400;line-height:1.6;color:var(--cream);margin-bottom:28px;
+}
+.manifesto-p:last-child{margin-bottom:0;}
+.manifesto-p strong{font-weight:700;color:var(--gold);}
+.manifesto-p em{font-style:italic;}
+
+/* NUMBERS STRIP */
+#numbers{background:var(--midnight);padding:60px 40px;border-top:1px solid rgba(196,154,60,0.1);border-bottom:1px solid rgba(196,154,60,0.1);}
+.numbers-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;max-width:1080px;margin:0 auto;}
+.num-cell{text-align:center;}
+.num-value{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,44px);font-weight:700;color:var(--gold);margin-bottom:6px;}
+.num-label{font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--cream);margin-bottom:4px;font-weight:500;}
+.num-sub{font-size:11px;color:var(--steel);}
+
+/* WHAT I DO */
+#what{padding:100px 40px;background:var(--midnight);}
+.what-header{margin-bottom:64px;}
+.what-title{font-family:'Playfair Display',serif;font-size:clamp(30px,4vw,50px);font-weight:700;color:var(--cream);margin:12px 0 12px;}
+.what-sub{color:var(--steel);font-size:15px;max-width:440px;}
+.what-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+.what-card{background:rgba(28,43,74,0.35);border-top:2px solid var(--gold);padding:36px 28px;transition:background 0.2s;}
+.what-card:hover{background:rgba(28,43,74,0.6);}
+.what-num{font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+.what-name{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--cream);margin-bottom:12px;line-height:1.2;}
+.what-desc{color:var(--steel);font-size:13px;line-height:1.75;}
+
+/* CAREER */
+#career{padding:100px 40px;background:linear-gradient(180deg,var(--navy) 0%,var(--midnight) 100%);}
+.career-header{margin-bottom:64px;}
+.career-title{font-family:'Playfair Display',serif;font-size:clamp(30px,4vw,50px);font-weight:700;color:var(--cream);margin:12px 0;}
+.timeline{position:relative;max-width:820px;}
+.timeline::before{content:'';position:absolute;left:0;top:8px;bottom:0;width:1px;background:linear-gradient(180deg,var(--gold) 0%,rgba(196,154,60,0.1) 100%);}
+.tl-item{padding:0 0 56px 36px;position:relative;}
+.tl-item:last-child{padding-bottom:0;}
+.tl-dot{position:absolute;left:-5px;top:6px;width:10px;height:10px;background:var(--gold);border-radius:50%;}
+.tl-period{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;font-weight:500;}
+.tl-role{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--cream);margin-bottom:4px;}
+.tl-company{font-size:13px;color:var(--steel);margin-bottom:16px;font-weight:500;}
+.tl-body{color:var(--steel);font-size:14px;line-height:1.75;margin-bottom:16px;}
+.tl-bullets{margin-top:12px;}
+.tl-bullet{display:flex;gap:10px;padding:7px 0;border-bottom:1px solid rgba(196,154,60,0.08);font-size:13px;color:var(--cream);}
+.tl-bullet:last-child{border-bottom:none;}
+.tl-bullet-dot{color:var(--gold);font-size:9px;margin-top:5px;flex-shrink:0;}
+
+/* LEGACY */
+#legacy{padding:100px 40px;background:var(--midnight);}
+.legacy-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;max-width:1080px;margin:0 auto;}
+.legacy-left{}
+.legacy-title{font-family:'Playfair Display',serif;font-size:clamp(30px,4vw,50px);font-weight:700;color:var(--cream);margin:12px 0 24px;line-height:1.1;}
+.legacy-bar{margin-bottom:28px;}
+.legacy-para{color:var(--steel);font-size:15px;line-height:1.85;margin-bottom:20px;}
+.legacy-close{color:var(--cream);font-size:15px;line-height:1.85;font-style:italic;border-left:3px solid var(--gold);padding-left:20px;margin-top:28px;}
+.mirror-wrap{display:flex;justify-content:center;align-items:center;gap:32px;padding:48px;background:rgba(28,43,74,0.3);border:1px solid rgba(196,154,60,0.15);}
+.mirror-side{text-align:center;}
+.mirror-line{width:1px;height:80px;background:var(--gold);flex-shrink:0;}
+.m-top{font-family:'Playfair Display',serif;font-size:clamp(18px,3vw,30px);font-weight:700;color:var(--cream);line-height:1.2;}
+.m-bot{font-family:'Playfair Display',serif;font-size:clamp(18px,3vw,30px);font-weight:700;color:var(--gold);line-height:1.2;}
+.mirror-caption{text-align:center;margin-top:20px;font-size:12px;color:var(--steel);letter-spacing:0.05em;}
+
+/* CREDENTIALS */
+#credentials{padding:80px 40px;background:rgba(28,43,74,0.2);}
+.cred-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;max-width:1080px;margin:0 auto;}
+.cred-block{}
+.cred-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--cream);margin:12px 0 20px;}
+.cred-item{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid rgba(196,154,60,0.1);font-size:13px;color:var(--steel);}
+.cred-item:last-child{border-bottom:none;}
+.cred-dot{color:var(--gold);font-size:9px;margin-top:4px;flex-shrink:0;}
+
+/* VENTURES */
+#ventures{padding:80px 40px;background:var(--midnight);}
+.ventures-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;max-width:1080px;margin:24px auto 0;}
+.v-card{background:rgba(28,43,74,0.25);border:1px solid rgba(196,154,60,0.15);padding:28px 24px;transition:background 0.2s;}
+.v-card:hover{background:rgba(28,43,74,0.5);}
+.v-name{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--cream);margin-bottom:8px;}
+.v-type{font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;font-weight:600;}
+.v-desc{font-size:13px;color:var(--steel);line-height:1.7;}
+
+/* PERSONAL */
+#personal{padding:80px 40px;background:var(--navy);}
+.personal-inner{max-width:640px;margin:0 auto;text-align:center;}
+.personal-title{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,42px);font-weight:700;color:var(--cream);margin:12px 0 32px;}
+.personal-para{color:var(--steel);font-size:16px;line-height:1.85;}
+
+/* CONTACT */
+#contact{padding:100px 40px;background:linear-gradient(135deg,var(--navy) 0%,var(--midnight) 100%);}
+.contact-inner{max-width:640px;margin:0 auto;text-align:center;}
+.contact-title{font-family:'Playfair Display',serif;font-size:clamp(34px,5vw,60px);font-weight:700;color:var(--cream);line-height:1.08;margin:12px 0 24px;}
+.contact-title span{color:var(--gold);}
+.contact-bar{margin:0 auto 32px;}
+.contact-para{color:var(--steel);font-size:16px;line-height:1.75;margin-bottom:48px;}
+.contact-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+.contact-small{color:var(--steel);font-size:13px;margin-top:32px;}
+
+/* FOOTER */
+footer{padding:28px 40px;background:#080B10;border-top:1px solid rgba(196,154,60,0.12);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+.footer-logo{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;letter-spacing:0.1em;color:var(--steel);}
+.footer-logo span{color:var(--gold);}
+.footer-text{color:var(--steel);font-size:11px;}
+.footer-links{display:flex;gap:24px;}
+.footer-link{color:var(--steel);font-size:11px;letter-spacing:0.05em;transition:color 0.2s;}
+.footer-link:hover{color:var(--gold);}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .numbers-grid{grid-template-columns:repeat(2,1fr);}
+  .what-grid{grid-template-columns:1fr;}
+  .legacy-grid{grid-template-columns:1fr;gap:48px;}
+  .cred-grid{grid-template-columns:1fr;}
+  .ventures-grid{grid-template-columns:1fr;}
+  .nav-links{display:none;}
+  .wrap,.wrap-narrow,.what-header,.career-header{padding:0 24px;}
+  #hero,#manifesto,#numbers,#what,#career,#legacy,#credentials,#ventures,#personal,#contact{padding-left:24px;padding-right:24px;}
+  footer{padding:24px;flex-direction:column;align-items:flex-start;}
+}
+@media(max-width:500px){
+  .hero-actions,.contact-actions{flex-direction:column;align-items:flex-start;}
+  .contact-actions{align-items:center;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-logo">Karl <span>Ohlemann</span></div>
+  <div class="nav-links">
+    <button class="nav-link" onclick="document.getElementById('what').scrollIntoView({behavior:'smooth'})">What I Do</button>
+    <button class="nav-link" onclick="document.getElementById('career').scrollIntoView({behavior:'smooth'})">Career</button>
+    <button class="nav-link" onclick="document.getElementById('legacy').scrollIntoView({behavior:'smooth'})">My Story</button>
+    <button class="nav-link" onclick="document.getElementById('credentials').scrollIntoView({behavior:'smooth'})">Credentials</button>
+    <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Let's Talk</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-bg-text">KARL</div>
+  <div class="hero-inner">
+    <p class="eyebrow hero-label">Founder-Operator · Strategist · Fractional CEO / CFO</p>
+    <h1 class="hero-title display">
+      I'm a<br><em>strategist.</em>
+    </h1>
+    <span class="gold-bar hero-bar"></span>
+    <p class="hero-sub sans">
+      Not the kind who builds frameworks and hands them off. The kind who gets in the room when the stakes are high, the answers aren't clear, and the decision has to be made today.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" onclick="event.preventDefault();document.getElementById('contact').scrollIntoView({behavior:'smooth'})" class="btn-primary">Let's Talk</a>
+      <a href="#what" onclick="event.preventDefault();document.getElementById('what').scrollIntoView({behavior:'smooth'})" class="btn-outline">What I Do</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span class="hero-scroll-text sans">Scroll</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- MANIFESTO -->
+<section id="manifesto">
+  <div class="manifesto-inner">
+    <p class="manifesto-p">I'm a <strong>strategist and problem solver</strong> at my core. Complex situations with high stakes and no clear playbook — that's where I do my best work. The pressure that slows most people down tends to sharpen my thinking.</p>
+    <p class="manifesto-p">I've built businesses from zero, turned around broken ones, and led through the decisions that define companies. I've built a business from <strong>zero to $30M ARR</strong>. Turned around companies bleeding cash and made them profitable. Advised founders at the moments that define whether a company survives or scales.</p>
+    <p class="manifesto-p"><strong>I'm decisive when informed. Relentless under pressure.</strong></p>
+    <p class="manifesto-p">If you need someone who thinks clearly when everything is moving fast — <em>that's what I do.</em></p>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<section id="numbers">
+  <div class="numbers-grid">
+    <div class="num-cell">
+      <div class="num-value display">$0 → $30M</div>
+      <div class="num-label sans">ARR Scaled</div>
+      <div class="num-sub sans">Single company</div>
+    </div>
+    <div class="num-cell">
+      <div class="num-value display">$200M+</div>
+      <div class="num-label sans">Revenue Built</div>
+      <div class="num-sub sans">Cumulative, from scratch</div>
+    </div>
+    <div class="num-cell">
+      <div class="num-value display">$2.3M+</div>
+      <div class="num-label sans">Turnaround</div>
+      <div class="num-sub sans">From a $242K loss — year one</div>
+    </div>
+    <div class="num-cell">
+      <div class="num-value display">25+</div>
+      <div class="num-label sans">Years Operating</div>
+      <div class="num-sub sans">Always in the founder's seat</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT I DO -->
+<section id="what">
+  <div class="wrap">
+    <div class="what-header">
+      <p class="eyebrow">What I Do</p>
+      <h2 class="what-title display">Three ways I work.</h2>
+      <p class="what-sub sans">All through KSIG Advisors — my fractional CEO/CFO and strategic advisory practice.</p>
+    </div>
+    <div class="what-grid">
+      <div class="what-card">
+        <div class="what-num sans">01</div>
+        <h3 class="what-name display">Fractional CEO / CFO</h3>
+        <p class="what-desc sans">Operator-grade executive leadership without the full-time overhead. Financial systems, capital access, team development, and strategic direction. I run alongside you, not above you.</p>
+      </div>
+      <div class="what-card">
+        <div class="what-num sans">02</div>
+        <h3 class="what-name display">Exit Readiness</h3>
+        <p class="what-desc sans">For founders whose exit is 6–24 months out. I build the financial infrastructure, operational clarity, and strategic positioning that makes buyers pay premiums and diligence go clean.</p>
+      </div>
+      <div class="what-card">
+        <div class="what-num sans">03</div>
+        <h3 class="what-name display">Transaction Ecosystem</h3>
+        <p class="what-desc sans">When it's time to transact, I connect founders to an aligned network of M&A advisors, operational partners, and pre-exit liquidity solutions. A complete team without full-time overhead.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAREER -->
+<section id="career">
+  <div class="wrap">
+    <div class="career-header">
+      <p class="eyebrow">Career</p>
+      <h2 class="career-title display">Twenty-five years.<br>Built from scratch.</h2>
+    </div>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-period sans">March 2026 – Present</div>
+        <div class="tl-role display">Founder & Managing Partner</div>
+        <div class="tl-company sans">KSIG Advisors · Greater Seattle Area</div>
+        <p class="tl-body sans">Fractional CEO/CFO and strategic advisory practice serving PE-backed, founder-led, and high-growth companies at the moments that define them — capital raises, financial turnarounds, operational scaling, and ownership transitions. Engagements are selective and high-touch.</p>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-period sans">June 2025 – Present</div>
+        <div class="tl-role display">Chief Financial Officer</div>
+        <div class="tl-company sans">Broadband Development Group LTD (BDG) · Multi-State</div>
+        <p class="tl-body sans">Multi-state turnkey engineering and construction provider of backbone, middle mile, and FTTH fiber/broadband infrastructure — including BEAD and AI infrastructure programs across nine states.</p>
+        <div class="tl-bullets">
+          <div class="tl-bullet sans"><span class="tl-bullet-dot">▸</span>Transformed $242K net loss to $2.34M net profit — highest single-year performance in company history</div>
+          <div class="tl-bullet sans"><span class="tl-bullet-dot">▸</span>Drove 81% revenue growth ($5.1M → $9.2M) while improving gross margin by 11.8 percentage points</div>
+          <div class="tl-bullet sans"><span class="tl-bullet-dot">▸</span>Identified and executed $435K+ in total expense reductions</div>
+          <div class="tl-bullet sans"><span class="tl-bullet-dot">▸</span>Built finance infrastructure from ground up across multi-state, multi-project construction environment</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-period sans">April 2021 – January 2025</div>
+        <div class="tl-role display">Founder · CEO · CFO</div>
+        <div class="tl-company sans">Nils Bernard · Greater Seattle Area & Central Washington</div>
+        <p class="tl-body sans">Premium custom home builder serving high-end residential markets. Founded and led simultaneously as CEO and CFO — managing complex construction job costing, project-level P&L, WIP accounting, and cash flow across multiple concurrent builds. Board of Directors, Central Washington Home Builders Association.</p>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-period sans">July 2007 – November 2020</div>
+        <div class="tl-role display">Founder · CEO · CFO</div>
+        <div class="tl-company sans">Macadam Floor & Design · Greater Seattle Area</div>
+        <p class="tl-body sans">Washington State's #2 professional flooring and design company. Built from zero to become an industry-leading AEC firm serving the Greater Seattle market's largest and most prestigious builders.</p>
+        <div class="tl-bullets">
+          <div class="tl-bullet sans"><span class="tl-bullet-dot">▸</span>Scaled from $0 to $30M ARR with over $200M in cumulative revenue</div>
+          <div class="tl-bullet sans"><span class="tl-bullet-dot">▸</span>Achieved #2 market position in Washington State within seven years</div>
+          <div class="tl-bullet sans"><span class="tl-bullet-dot">▸</span>Grew to 200+ employees across multiple locations at 50%+ YoY growth</div>
+          <div class="tl-bullet sans"><span class="tl-bullet-dot">▸</span>Evaluated and declined acquisition offers from two private equity firms — market call proved correct</div>
+          <div class="tl-bullet sans"><span class="tl-bullet-dot">▸</span>Completed projects on nearly 10,000 homes across WA and OR</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-period sans">December 2000 – December 2007</div>
+        <div class="tl-role display">Co-Founder & CEO</div>
+        <div class="tl-company sans">Chase International · Portland, OR / Vancouver, WA</div>
+        <p class="tl-body sans">Founded flooring and design company; expanded to a national chain of independently owned stores organized as a buying group. Secured competitive national contracts with the largest flooring manufacturers in the US. Built a private label program and national sales agent network spanning multiple states.</p>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-period sans">January 1998 – December 2000</div>
+        <div class="tl-role display">Manager, Nike Retail Special Orders</div>
+        <div class="tl-company sans">Nike, Inc. · NikeTown Portland & World Headquarters, Beaverton OR</div>
+        <p class="tl-body sans">Started at Nike's NikeTown Portland flagship on own merit at 22. Earned promotion to Nike World Headquarters where I built and led Nike Retail Special Orders (NRSO) — centralizing special order operations for all US Nike Retail, Outlet, and Employee Stores. Part of the RFP process for the platform that became the precursor to Nike.com's first e-commerce capabilities. Designated Corporate IT "Super User" — expert conduit between developers, business staff, and consumers across new system implementations.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- LEGACY -->
+<section id="legacy">
+  <div class="legacy-grid wrap">
+    <div class="legacy-left">
+      <p class="eyebrow">Where I Come From</p>
+      <h2 class="legacy-title display">My story starts<br>before I was born.</h2>
+      <span class="gold-bar legacy-bar"></span>
+      <p class="legacy-para sans">I'm first-generation American. My father, Siegmar Karl Ohlemann, escaped East Germany at 14 — separated from his parents and brother, crossing into the West with nothing. He made his way to Canada, where he became the fastest 800 meter runner in North America, won Silver at the Pan American Games, and carried Canada's closing ceremony flag at the 1960 Rome Olympics.</p>
+      <p class="legacy-para sans">He trained under Bill Bowerman at the University of Oregon alongside a young Phil Knight, and remained a lifelong friend of both men. He is named in <em>Bowerman and the Men of Oregon</em> — the book that documents the founding of Nike.</p>
+      <p class="legacy-para sans">My grandfather on my mother's side, Nils Bernard Hult, was a businessman and philanthropist in Eugene, Oregon whose impact was permanent enough that the Hult Center for the Performing Arts carries his name today.</p>
+      <blockquote class="legacy-close sans">
+        I grew up inside two legacies: a man who built everything from nothing across three countries, and a man who built something that outlasted him. That combination shaped how I think about building businesses.
+      </blockquote>
+    </div>
+    <div>
+      <div class="mirror-wrap">
+        <div class="mirror-side">
+          <div class="m-top display">Karl</div>
+          <div class="m-bot display">Siegmar</div>
+        </div>
+        <div class="mirror-line"></div>
+        <div class="mirror-side">
+          <div class="m-bot display">Siegmar</div>
+          <div class="m-top display">Karl</div>
+        </div>
+      </div>
+      <p class="mirror-caption sans">Two generations. One name, mirrored.<br>The best work is built on something that lasts.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CREDENTIALS -->
+<section id="credentials">
+  <div class="wrap">
+    <p class="eyebrow" style="margin-bottom:12px;">Credentials & Recognition</p>
+    <div class="cred-grid">
+      <div class="cred-block">
+        <h3 class="cred-title display">Academic & Professional</h3>
+        <div class="cred-item sans"><span class="cred-dot">▸</span>MIT Sloan School of Management — Advanced Certificate for Executives (ACE): Management, Innovation & Technology</div>
+        <div class="cred-item sans"><span class="cred-dot">▸</span>University of Oregon, Lundquist College of Business — Business Administration (1993–1997)</div>
+        <div class="cred-item sans"><span class="cred-dot">▸</span>CMA Candidate — Certified Management Accountant (Becker / IMA)</div>
+      </div>
+      <div class="cred-block">
+        <h3 class="cred-title display">Advisory & Recognition</h3>
+        <div class="cred-item sans"><span class="cred-dot">▸</span>Harvard Business Review Advisory Council — Member</div>
+        <div class="cred-item sans"><span class="cred-dot">▸</span>Fast Company Executive Board — Member</div>
+        <div class="cred-item sans"><span class="cred-dot">▸</span>Shadow Ventures (AEC Technology VC) — Startup Advisor</div>
+        <div class="cred-item sans"><span class="cred-dot">▸</span>Fiber Broadband Association — AI & ML Working Group | Deployment Specialists | Middle Mile Working Group</div>
+        <div class="cred-item sans"><span class="cred-dot">▸</span>National Small Business Association — Leadership Council</div>
+        <div class="cred-item sans"><span class="cred-dot">▸</span>2024 CXO 2.0 Business Leadership Excellence Award</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VENTURES -->
+<section id="ventures">
+  <div class="wrap">
+    <p class="eyebrow" style="margin-bottom:12px;">Community & Ventures</p>
+    <h2 class="what-title display" style="margin-bottom:48px;">Beyond the boardroom.</h2>
+    <div class="ventures-grid">
+      <div class="v-card">
+        <div class="v-type sans">Community · Civic Leadership</div>
+        <div class="v-name display">WeHeartCleElumRoslyn</div>
+        <p class="v-desc sans">Social Purpose Corporation founded with my wife Stacey. When the City of Cle Elum faced a $25M+ arbitration judgment threatening municipal bankruptcy, I applied CFO-level financial analysis — advocating for receivership and organizing a PAC to restructure the city toward professional management. Full-time residents of Roslyn, WA.</p>
+      </div>
+      <div class="v-card">
+        <div class="v-type sans">Early-Stage Venture</div>
+        <div class="v-name display">Visitoll</div>
+        <p class="v-desc sans">Exploring a partnership with Metropolis — a leading AI-powered vehicle tracking platform — to license their technology to small cities for municipal toll collection at city entry and exit points. A revenue model that replaces fragmented parking enforcement with a simpler, technology-enabled alternative.</p>
+      </div>
+      <div class="v-card">
+        <div class="v-type sans">Holding Company</div>
+        <div class="v-name display">Curate Holdings</div>
+        <p class="v-desc sans">Personal holding company for intellectual property, brand concepts, and early-stage business ventures across multiple sectors. Houses domain portfolio and early-stage venture development.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PERSONAL -->
+<section id="personal">
+  <div class="personal-inner">
+    <p class="eyebrow" style="display:inline-block;margin-bottom:12px;">Personal</p>
+    <h2 class="personal-title display">Roslyn, WA.<br>27 years married.<br>Three daughters.</h2>
+    <p class="personal-para sans">My wife Stacey and I have been married for over 27 years. We have three daughters and a miniature goldendoodle named Rover. We renovated a circa 1888 home in Roslyn, Washington — one of the most unique small towns in the Pacific Northwest, about an hour from Seattle. We are proud to be full-time residents.</p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <span class="eyebrow" style="display:inline-block;margin-bottom:12px;">Let's Talk</span>
+    <h2 class="contact-title display">
+      Selectively available<br>for the right<br><span>engagements.</span>
+    </h2>
+    <span class="gold-bar contact-bar"></span>
+    <p class="contact-para sans">I'm available for fractional CEO and CFO engagements, advisory roles, and strategic conversations with founders and PE-backed operators who need more than a finance function — they need a partner who's built what they're trying to build.</p>
+    <div class="contact-actions">
+      <a href="mailto:karl.ohlemann@ksigadvisors.com" class="btn-primary">karl.ohlemann@ksigadvisors.com</a>
+      <a href="https://www.linkedin.com/in/karl-ohlemann" target="_blank" rel="noreferrer" class="btn-outline">LinkedIn</a>
+    </div>
+    <p class="contact-small sans">(425) 575-8833 &nbsp;·&nbsp; karlohlemann.com &nbsp;·&nbsp; Greater Seattle Area</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo display">Karl <span>Ohlemann</span></div>
+  <div class="footer-links">
+    <a href="https://ksigadvisors.com" target="_blank" class="footer-link sans">ksigadvisors.com</a>
+    <a href="https://www.linkedin.com/in/karl-ohlemann" target="_blank" class="footer-link sans">LinkedIn</a>
+  </div>
+  <span class="footer-text sans">© 2026 Karl Ohlemann · All Rights Reserved</span>
+</footer>
+
+<script>
+  const nav=document.getElementById('nav');
+  window.addEventListener('scroll',()=>{
+    nav.classList.toggle('scrolled',window.scrollY>40);
+  });
+</script>
+</body>
+</html>
