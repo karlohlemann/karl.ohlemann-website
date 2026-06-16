@@ -86,9 +86,8 @@
     .nav-links a:hover { color: var(--gold); }
 
     /* HERO */
-.hero {
-  min-height: auto;
-  padding: 8rem 2.5rem 6rem;
+    .hero {
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -221,7 +220,14 @@
     .photo-img {
       width: 100%;
       aspect-ratio: 4/5;
+      overflow: hidden;
+    }
+
+    .photo-img img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
+      display: block;
       filter: grayscale(20%) contrast(1.05);
     }
 
@@ -773,10 +779,6 @@
         <span class="metric-label">Net Profit, Year One CFO</span>
       </div>
       <div class="metric">
-        <span class="metric-value">2</span>
-        <span class="metric-label">PE Offers Declined</span>
-      </div>
-      <div class="metric">
         <span class="metric-value">25+</span>
         <span class="metric-label">Years Operating</span>
       </div>
@@ -790,7 +792,9 @@
   <!-- PHOTO + WHAT I DO -->
   <section class="photo-section">
     <div class="photo-inner">
-     <img src="images/karl-and-stacey.jpeg" alt="Karl and Stacey Ohlemann" class="photo-img">
+      <div class="photo-img">
+        <img src="images/karl-and-stacey.jpeg" alt="Karl and Stacey Ohlemann" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+      </div>
       <div class="photo-content">
         <h2>Not a consultant.<br><em>An operator.</em></h2>
         <div class="gold-rule"></div>
@@ -920,7 +924,7 @@
         <h2>One relationship.<br><em>A curated network.</em></h2>
         <div class="gold-rule"></div>
         <p>KSIG Advisors is my fractional CEO/CFO and strategic advisory practice — and the hub of an aligned network of specialists organized around the moments that define whether a company survives, scales, or exits successfully.</p>
-        <p>I don't try to do everything. I do what I'm exceptional at — and I've built the network for the rest.</p>
+        <p>We don't try to do everything. We do what we're exceptional at — and we've built the network for the rest.</p>
         <a href="https://ksigadvisors.com" class="btn-primary" style="margin-top:1rem;">Visit KSIG Advisors →</a>
       </div>
       <div class="ksig-lanes">
@@ -1040,7 +1044,7 @@
     <div class="contact-inner">
       <h2>Let's <em>talk.</em></h2>
       <p>Selectively available for fractional CEO and CFO engagements, advisory roles, and strategic conversations with founders and PE-backed operators who need more than a finance function — they need a partner who's built what they're trying to build.</p>
-<div style="margin-bottom:2rem;">
+      <div style="margin-bottom:2rem;">
         <a href="mailto:karl.ohlemann@ksigadvisors.com?subject=Resume%20Request%20%E2%80%94%20Karl%20Ohlemann&body=Hi%20Karl%2C%0A%0AI%20came%20across%20your%20site%20and%20would%20like%20to%20request%20your%20resume.%0A%0A" class="btn-secondary">Request Resume →</a>
       </div>
       <div class="contact-links">
