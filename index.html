@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Karl Ohlemann | Founder-Operator | Scaled $0→$30M ARR | Fractional CEO & CFO for PE-Backed and Founder-Led Companies</title>
-  <meta name="description" content="Karl Ohlemann — Founder-Operator, Fractional CEO & CFO. Scaled $0→$30M ARR, $200M+ revenue. PE-aware executive serving founder-led and PE-backed companies through KSIG Advisors.">
-  <meta name="keywords" content="Karl Ohlemann, fractional CFO Seattle, fractional CEO Seattle, KSIG Advisors, PE-backed CFO, founder operator CFO, turnaround CFO">
-  <meta property="og:title" content="Karl Ohlemann | Founder-Operator | Fractional CEO & CFO">
-  <meta property="og:description" content="25+ years building, scaling, and turning around companies. Scaled $0→$30M ARR. PE-aware. Fractional CEO & CFO.">
+  <title>Karl Ohlemann | CFO · Founder-Operator · AI Systems & Technology Strategy</title>
+  <meta name="description" content="Karl Ohlemann is a CFO and 25+ year founder-operator who has scaled businesses to $30M+ ARR and $200M+ cumulative revenue, specializing in turnarounds, FP&A, capital, finance systems, AI, automation, and technology strategy.">
+  <meta name="keywords" content="Karl Ohlemann, CFO, fractional CFO Seattle, fractional CEO Seattle, founder operator CFO, turnaround CFO, FP&A, AI systems, automation, technology strategy, KSIG Advisors, BlackBoxx.ai">
+  <meta property="og:title" content="Karl Ohlemann | CFO · Founder-Operator · AI Systems & Technology Strategy">
+  <meta property="og:description" content="25+ years building, scaling, financing, and turning around companies. $0→$30M+ ARR and $200M+ cumulative revenue, with career-long depth in finance, operations, technology, and systems.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://karlohlemann.com">
   <link rel="icon" type="image/png" href="/favicon.png">
@@ -487,6 +487,10 @@
       line-height: 1.5;
     }
 
+    /* .ksig-cta p sets a 2rem margin; keep card internals tight */
+    .ksig-cta .lane-title { margin-bottom: 0.4rem; }
+    .ksig-cta .lane-desc { margin-bottom: 0; }
+
     /* CREDENTIALS */
     .credentials {
       padding: 6rem 2.5rem;
@@ -568,7 +572,7 @@
 
     .edu-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
       gap: 1.5rem;
       margin-top: 2.5rem;
     }
@@ -720,6 +724,132 @@
 
     .footer-links a:hover { color: var(--gold); }
 
+    /* TECHNOLOGY & AI */
+    .tech {
+      background: var(--slate);
+      padding: 6rem 2.5rem;
+    }
+
+    .tech-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .tech .section-title {
+      margin-bottom: 2rem;
+      max-width: 820px;
+    }
+
+    .tech-body {
+      color: var(--warm-grey);
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 1.25rem;
+      max-width: 820px;
+    }
+
+    .tech-body strong {
+      color: var(--off-white);
+      font-weight: 500;
+    }
+
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .tech-card {
+      padding: 1.75rem;
+      background: rgba(10,10,10,0.3);
+      border-top: 2px solid var(--gold);
+    }
+
+    .tech-card-org {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+
+    .tech-card-title {
+      font-family: var(--display);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--parchment);
+      margin-bottom: 0.4rem;
+    }
+
+    .tech-card-desc {
+      font-size: 0.88rem;
+      color: var(--warm-grey);
+      line-height: 1.6;
+    }
+
+    .blackboxx {
+      margin-top: 3rem;
+      padding: 2.5rem;
+      background: rgba(10,10,10,0.4);
+      border: 1px solid rgba(196,168,130,0.18);
+    }
+
+    .blackboxx-label {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      color: var(--gold);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.9rem;
+    }
+
+    .blackboxx-title {
+      font-family: var(--display);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--parchment);
+      line-height: 1.2;
+      margin-bottom: 0.35rem;
+    }
+
+    .blackboxx-role {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--off-white);
+      letter-spacing: 0.06em;
+      margin-bottom: 1.25rem;
+    }
+
+    .blackboxx-desc {
+      color: var(--warm-grey);
+      font-size: 0.95rem;
+      line-height: 1.75;
+      margin-bottom: 1rem;
+      max-width: 760px;
+    }
+
+    .inline-link {
+      color: var(--gold);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(196,168,130,0.35);
+      white-space: nowrap;
+    }
+
+    .inline-link:hover { border-color: var(--gold); }
+
+    .ksig-note {
+      font-size: 0.9rem;
+      line-height: 1.65;
+    }
+
+    .availability {
+      color: var(--off-white) !important;
+      font-size: 1.05rem !important;
+      margin-bottom: 1.25rem !important;
+    }
+
     /* DIVIDER */
     .gold-rule {
       width: 60px;
@@ -742,6 +872,10 @@
       .cred-grid { grid-template-columns: 1fr 1fr; }
       .venture-grid { grid-template-columns: 1fr; }
       .edu-grid { grid-template-columns: 1fr; }
+      .tech { padding: 4.5rem 1.5rem; }
+      .tech-grid { grid-template-columns: 1fr; }
+      .blackboxx { padding: 1.75rem 1.35rem; }
+      .hero-metrics { gap: 1.25rem 1.75rem; }
       footer { flex-direction: column; gap: 1rem; text-align: center; }
       .footer-links { justify-content: center; }
     }
@@ -758,6 +892,7 @@
     <a href="#" class="nav-name">Karl Ohlemann</a>
     <ul class="nav-links">
       <li><a href="#career">Career</a></li>
+      <li><a href="#technology">Technology & AI</a></li>
       <li><a href="#ksig">KSIG Advisors</a></li>
       <li><a href="#credentials">Credentials</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -766,9 +901,9 @@
 
   <!-- HERO -->
   <section class="hero">
-    <p class="hero-eyebrow">Founder-Operator · Fractional CEO & CFO · Greater Seattle Area</p>
-    <h1 class="hero-headline">I build companies,<br>turn them around,<br>and <em>make them last.</em></h1>
-    <p class="hero-sub">25+ years as a founder, CEO, and CFO. I've scaled from zero, engineered turnarounds, raised capital, and evaluated PE acquisition offers from the ownership seat — and said no when the market called for it.</p>
+    <p class="hero-eyebrow">CFO · Fractional CEO/CFO · Founder-Operator · Greater Seattle Area</p>
+    <h1 class="hero-headline">I build businesses,<br>financial systems,<br>and <em>what comes next.</em></h1>
+    <p class="hero-sub">25+ years building, scaling, financing, and turning around companies. Scaled from startup to $30M+ ARR and more than $200M in cumulative revenue, with a career-long focus on finance, operations, technology, and systems.</p>
     <div class="hero-metrics">
       <div class="metric">
         <span class="metric-value">$0→$30M</span>
@@ -779,8 +914,8 @@
         <span class="metric-label">Revenue Built</span>
       </div>
       <div class="metric">
-        <span class="metric-value">$2.3M+</span>
-        <span class="metric-label">Net Profit, Year One CFO</span>
+        <span class="metric-value">$242K→$2.34M</span>
+        <span class="metric-label">Loss to Profit, 12 Months</span>
       </div>
       <div class="metric">
         <span class="metric-value">81%</span>
@@ -792,7 +927,7 @@
       </div>
     </div>
     <div class="hero-cta">
-      <a href="https://ksigadvisors.com" class="btn-primary">KSIG Advisors →</a>
+      <a href="#career" class="btn-primary">View Executive Experience</a>
       <a href="#contact" class="btn-secondary">Get in Touch</a>
     </div>
   </section>
@@ -804,13 +939,12 @@
         <img src="images/karl-and-stacey.jpeg" alt="Karl and Stacey Ohlemann" style="width:100%;height:100%;object-fit:cover;display:block;"/>
       </div>
       <div class="photo-content">
-        <h2>Not a consultant.<br><em>An operator.</em></h2>
+        <h2>An operator first.<br><em>A CFO where it counts.</em></h2>
         <div class="gold-rule"></div>
-        <p>I'm not a traditional institutional CFO. I'm an operator who happens to be the best finance person in the room — and I work best with founders and PE-backed companies that need both.</p>
-        <p>I've built a business from zero to $30M ARR. Turned a company from a <strong>$242K net loss to $2.34M net profit</strong> in twelve months. Raised growth capital. Evaluated PE acquisition offers from the ownership seat and declined them when the market called for it — and was right.</p>
-        <p>Complex situations with high stakes and no clear playbook — that's where I do my best work.</p>
-        <p>I founded <strong>KSIG Advisors</strong> to bring that same operator's perspective directly to founders and PE-backed leadership teams navigating the moments that matter most: scale, transition, capital raises, and exits.</p>
-        <a href="https://ksigadvisors.com" class="btn-secondary" style="margin-top:1rem;">Learn About KSIG →</a>
+        <p>I've spent my career in the ownership and executive seats — building companies, managing capital, leading teams, solving operating problems, and making decisions when the answers weren't obvious.</p>
+        <p>That operating perspective shapes how I approach finance. I build visibility, strengthen systems, understand the economics, identify what matters, and turn financial information into executive action.</p>
+        <p>I've scaled a company from zero to <strong>$30M+ ARR</strong>, built teams of 200+, raised growth capital, evaluated private-equity acquisition offers from the ownership seat, and most recently helped deliver a transformation from a <strong>$242K net loss to $2.34M net profit</strong> while revenue grew from $5.1M to $9.2M.</p>
+        <p>Complex situations with high stakes and no clear playbook are where I do my best work.</p>
       </div>
     </div>
   </section>
@@ -827,6 +961,44 @@
     </div>
   </section>
 
+  <!-- TECHNOLOGY & AI -->
+  <section class="tech" id="technology">
+    <div class="tech-inner">
+      <p class="section-eyebrow">Technology & AI</p>
+      <h2 class="section-title">Technology has always been part of how I operate.</h2>
+      <p class="tech-body">At <strong>Nike World Headquarters</strong>, I was designated a Corporate Information Technology “Super User,” working between developers, business teams, retail operations, employees, and customers during new-system implementations. I built and led Nike Retail Special Orders and helped develop its early internet-based purchasing capability during Nike's transition toward retail e-commerce.</p>
+      <p class="tech-body">Later, as a founder and CEO/CFO, I directly led strategy, innovation, technology implementation, and business systems while scaling operating companies.</p>
+      <p class="tech-body">Today, that work extends into AI systems, agentic workflows, automation, technology strategy, and integrating AI into finance, operations, research, and executive decision-making.</p>
+
+      <div class="tech-grid">
+        <div class="tech-card">
+          <p class="tech-card-org">Nike</p>
+          <p class="tech-card-title">Corporate IT Super User</p>
+          <p class="tech-card-desc">Business ↔ technology translation and early internet commerce.</p>
+        </div>
+        <div class="tech-card">
+          <p class="tech-card-org">MIT Sloan</p>
+          <p class="tech-card-title">Executive Education</p>
+          <p class="tech-card-desc">Management · Innovation · Technology · AI</p>
+        </div>
+        <div class="tech-card">
+          <p class="tech-card-org">BlackBoxx.ai</p>
+          <p class="tech-card-title">AI Systems Lab</p>
+          <p class="tech-card-desc">Agents · Automation · Orchestration · Integration</p>
+        </div>
+      </div>
+
+      <div class="blackboxx">
+        <p class="blackboxx-label">Independent AI Systems Lab · Since October 2023</p>
+        <h3 class="blackboxx-title">BlackBoxx.ai</h3>
+        <p class="blackboxx-role">Principal | AI Systems and Automation Architect</p>
+        <p class="blackboxx-desc">BlackBoxx.ai is an independent AI Systems Lab focused on building and pressure-testing practical agentic systems, automation, orchestration, and AI integration across real-world business workflows.</p>
+        <p class="blackboxx-desc">I design and test multi-agent systems, agent specialization, AI/tool integration, workflow automation, and AI-enabled operating systems — applying emerging capabilities to finance, research, executive decision support, operations, and business-process automation.</p>
+        <a href="https://blackboxx.ai" class="btn-secondary" style="margin-top:1.5rem;" target="_blank" rel="noopener">Explore BlackBoxx.ai →</a>
+      </div>
+    </div>
+  </section>
+
   <!-- CAREER -->
   <section class="career" id="career">
     <p class="section-eyebrow">Career</p>
@@ -834,24 +1006,19 @@
 
     <div class="career-item">
       <div class="career-meta">
-        <p class="career-dates">2026 — PRESENT</p>
+        <p class="career-dates">MAR 2026 — PRESENT</p>
         <p class="career-company">KSIG Advisors</p>
         <p class="career-location">Greater Seattle Area</p>
       </div>
       <div class="career-content">
-        <h3>Founder & Managing Partner</h3>
-        <p>Fractional CEO/CFO and strategic advisory practice serving PE-backed, founder-led, and high-growth companies at the moments that define them. A curated network of aligned specialists, led by an operator who has sat in the founder's seat.</p>
-        <ul class="career-bullets">
-          <li>Built a complete exit journey practice — financial cleanup, value creation, CIM-ready preparation, and transaction execution through a curated global partner ecosystem</li>
-          <li>Ecosystem includes 85+ global buy-side M&A partners, a 500+ member fractional CFO network, pre-exit liquidity capital, and post-close wealth management — coordinated through one relationship</li>
-          <li>Network spans origination, operational advisory, expanded CFO delivery, pre-exit liquidity, transaction execution, and post-close wealth — all tracks running in parallel during core engagement</li>
-        </ul>
+        <h3>Principal · Fractional CEO/CFO</h3>
+        <p>Independent fractional executive and strategic finance practice serving founder-led, PE-backed, and growth-stage companies navigating growth, turnaround, capital needs, operational complexity, and ownership transition.</p>
       </div>
     </div>
 
     <div class="career-item">
       <div class="career-meta">
-        <p class="career-dates">June 2025 — July 2026</p>
+        <p class="career-dates">JUN 2025 — JUL 2026</p>
         <p class="career-company">Broadband Development Group LTD</p>
         <p class="career-location">Multi-State · 9 States</p>
       </div>
@@ -859,11 +1026,24 @@
         <h3>Chief Financial Officer</h3>
         <p>Multi-state turnkey engineering and construction provider of backbone, middle mile, and FTTH fiber optic broadband infrastructure — including federal BEAD and AI infrastructure programs.</p>
         <ul class="career-bullets">
-          <li><strong>Fastest single-year turnaround and highest profitability</strong> in company history within 12 months</li>
-          <li>Substantial revenue growth with significant gross margin improvement through pricing discipline and cost restructuring</li>
-          <li>Built finance infrastructure from the ground up: FP&A, treasury, cash flow forecasting, executive dashboards, and KPI reporting</li>
-          <li>Managed federal BEAD program financial compliance and government funding reporting</li>
+          <li><strong>$242K net loss → $2.34M net profit</strong> — the fastest single-year turnaround and highest profitability in company history</li>
+          <li><strong>81% revenue growth</strong>, $5.1M → $9.2M, with gross margin improved 11.8 percentage points through pricing discipline and cost restructuring</li>
+          <li>$435K+ in identified expense reductions</li>
+          <li>Built the finance function from the ground up: FP&A, accounting, treasury, financial reporting, executive dashboards, 13-week cash forecasting, and liquidity planning</li>
+          <li>Federal BEAD program financial compliance and board-level financial analysis</li>
         </ul>
+      </div>
+    </div>
+
+    <div class="career-item">
+      <div class="career-meta">
+        <p class="career-dates">OCT 2023 — PRESENT</p>
+        <p class="career-company">BlackBoxx.ai</p>
+        <p class="career-location">Independent AI Systems Lab</p>
+      </div>
+      <div class="career-content">
+        <h3>Principal · AI Systems and Automation Architect</h3>
+        <p>Independent AI Systems Lab building and pressure-testing practical agentic systems, automation, orchestration, and AI integration across real-world business workflows — applied to finance, research, executive decision support, operations, and business-process automation. <a href="https://blackboxx.ai" target="_blank" rel="noopener" class="inline-link">blackboxx.ai →</a></p>
       </div>
     </div>
 
@@ -906,7 +1086,7 @@
         <p class="career-location">Portland, OR / Vancouver, WA</p>
       </div>
       <div class="career-content">
-        <h3>Co-Founder · CEO</h3>
+        <h3>Co-Founder · Head of Strategy, Innovation & Technology</h3>
         <p>Co-founded a flooring and design business that evolved into a national network of independently owned stores organized as a buying group. Secured national contracts with the largest flooring manufacturers in the US, built a private label program, and developed a national sales agent network spanning multiple states.</p>
       </div>
     </div>
@@ -919,7 +1099,9 @@
       </div>
       <div class="career-content">
         <h3>Manager, Nike Retail Special Orders · Corporate IT Super User</h3>
-        <p>Promoted to Nike World Headquarters at 22. Built and led Nike Retail Special Orders (NRSO), centralizing special order operations for all US Retail, Outlet, and Employee Stores. Part of the RFP process that became the precursor to Nike.com's first e-commerce capabilities. Designated Corporate IT Super User — the bridge between engineers and the business across major system implementations.</p>
+        <p>Promoted from NikeTown Portland to Nike World Headquarters at age 22 to create, centralize, and lead Nike Retail Special Orders for all U.S. Nike Retail, Outlet, and Employee Stores.</p>
+        <p>Built the national operating model, workflows, and systems for sourcing products unavailable through individual stores; traveled to NikeTown locations and new-store openings to train teams and support national rollout.</p>
+        <p>Helped develop Nike Retail Special Orders' early internet-based purchasing capability — an early operational foundation in Nike's transition toward retail e-commerce — and was designated a rare Corporate IT “Super User,” working between IT, business leadership, developers, retail operations, employees, and consumers during new-system implementations.</p>
       </div>
     </div>
   </section>
@@ -929,24 +1111,24 @@
     <div class="ksig-cta-inner">
       <div>
         <p class="section-eyebrow">KSIG Advisors</p>
-        <h2>One relationship.<br><em>A curated ecosystem.</em></h2>
+        <h2>Fractional executive leadership<br><em>when the situation demands experience.</em></h2>
         <div class="gold-rule"></div>
-        <p>KSIG Advisors is my fractional CEO/CFO and strategic advisory practice — built around the complete exit journey. From financial cleanup and value creation through transaction readiness, pre-exit liquidity, and post-close wealth management.</p>
-        <p>85+ global buy-side partners. $150M+ in pre-exit liquidity available for qualifying founders. A 500+ member fractional CFO network. One relationship that coordinates the entire 360° Exit Ecosystem™ around your company.</p>
+        <p>KSIG Advisors is my independent fractional CEO/CFO and strategic finance practice, serving founder-led, PE-backed, and growth-stage businesses navigating growth, turnaround, capital needs, financial transformation, and ownership transition.</p>
+        <p class="ksig-note">KSIG maintains relationships across M&A, capital, legal, accounting, technology, and operations, and can coordinate additional specialist resources when an engagement requires them.</p>
         <a href="https://ksigadvisors.com" class="btn-primary" style="margin-top:1rem;">Visit KSIG Advisors →</a>
       </div>
       <div class="ksig-lanes">
         <div class="lane">
-          <p class="lane-title">Fractional CEO / CFO</p>
-          <p class="lane-desc">Operator-grade executive leadership. Financial infrastructure, capital access, board reporting, strategic direction. Engagements typically 6–24 months at $8K–$15K/month.</p>
+          <p class="lane-title">Fractional CFO Leadership</p>
+          <p class="lane-desc">FP&A, cash forecasting, financial reporting, lender and investor readiness, capital planning, board reporting, and finance systems.</p>
         </div>
         <div class="lane">
-          <p class="lane-title">Exit Readiness Advisory</p>
-          <p class="lane-desc">Financial cleanup, P&L normalization, KPI architecture, and CIM-ready reporting for founders targeting a transaction within 12–36 months. Operational advisory runs in parallel through KSIG partners.</p>
+          <p class="lane-title">Strategic Finance & Turnaround</p>
+          <p class="lane-desc">Margin improvement, working capital, restructuring, KPI architecture, and pricing and cost optimization.</p>
         </div>
         <div class="lane">
-          <p class="lane-title">Full-Journey Ecosystem</p>
-          <p class="lane-desc">KSIG coordinates a curated partner matrix across deal origination, operational advisory, expanded delivery, pre-exit liquidity, transaction execution, and post-close wealth management.</p>
+          <p class="lane-title">Exit Readiness</p>
+          <p class="lane-desc">Financial cleanup, normalization, diligence readiness, and transaction preparation.</p>
         </div>
       </div>
     </div>
@@ -961,7 +1143,7 @@
     <div class="cred-grid">
       <div class="cred-item">
         <p class="cred-org">MIT Sloan</p>
-        <p class="cred-role">Executive Management Program — Advanced Certificate in Management, Innovation & Technology (ACE) · In Progress</p>
+        <p class="cred-role">Executive Education — Advanced Certificate for Executives (ACE) in Management, Innovation & Technology · In Progress</p>
       </div>
       <div class="cred-item">
         <p class="cred-org">CMA Candidate</p>
@@ -988,8 +1170,8 @@
         <p class="cred-role">2024 Business Leadership Excellence Award</p>
       </div>
       <div class="cred-item">
-        <p class="cred-org">ACG - Association for Corporate Growth</p>
-        <p class="cred-role">Member · Seattle Chapter</p>
+        <p class="cred-org">Association for Corporate Growth</p>
+        <p class="cred-role">Seattle Chapter · Member</p>
       </div>
       <div class="cred-item">
         <p class="cred-org">Association for Financial Professionals</p>
@@ -1034,18 +1216,22 @@
     <h2 class="section-title">Academic Foundation</h2>
     <div class="edu-grid">
       <div class="edu-item">
-        <p class="edu-institution">MIT Sloan School of Management</p>
-        <p class="edu-degree">Advanced Certificate for Executives in Management, Innovation & Technology (ACE)</p>
+        <p class="edu-institution">MIT Sloan Executive Education</p>
+        <p class="edu-degree">Advanced Certificate for Executives (ACE) · Management, Innovation & Technology</p>
         <p class="edu-status">In Progress</p>
-      </div>
-      <div class="edu-item">
-        <p class="edu-institution">University of Oregon</p>
-        <p class="edu-degree">Lundquist College of Business · Business Administration · 1993–1997</p>
       </div>
       <div class="edu-item">
         <p class="edu-institution">CMA Candidate</p>
-        <p class="edu-degree">Certified Management Accountant · Becker Professional Education</p>
+        <p class="edu-degree">Institute of Management Accountants · Becker Professional Education</p>
         <p class="edu-status">In Progress</p>
+      </div>
+      <div class="edu-item">
+        <p class="edu-institution">University of Washington</p>
+        <p class="edu-degree">Finance & Business Management Coursework</p>
+      </div>
+      <div class="edu-item">
+        <p class="edu-institution">University of Oregon</p>
+        <p class="edu-degree">Lundquist College of Business · Business Administration & Management Coursework · 1993–1997</p>
       </div>
     </div>
   </section>
@@ -1061,9 +1247,10 @@
   <section class="contact" id="contact">
     <div class="contact-inner">
       <h2>Let's <em>talk.</em></h2>
-      <p>Selectively available for fractional CEO and CFO engagements, advisory roles, and strategic conversations with founders and PE-backed operators who need more than a finance function — they need a partner who's built what they're trying to build.</p>
+      <p class="availability">I'm currently open to the right full-time CFO or senior executive finance opportunity, fractional CEO/CFO engagements, and select strategic advisory roles.</p>
+      <p>If you're looking for an experienced operator who can connect finance, strategy, operations, technology, and execution, I'm always open to the right conversation.</p>
       <div style="margin-bottom:2rem;">
-        <a href="mailto:karl.ohlemann@ksigadvisors.com?subject=Resume%20Request%20%E2%80%94%20Karl%20Ohlemann&body=Hi%20Karl%2C%0A%0AI%20came%20across%20your%20site%20and%20would%20like%20to%20request%20your%20resume.%0A%0A" class="btn-secondary">Request Resume →</a>
+        <a href="mailto:karl.ohlemann@ksigadvisors.com?subject=CFO%20Resume%20Request%20%E2%80%94%20Karl%20Ohlemann&body=Hi%20Karl%2C%0A%0AI%20came%20across%20your%20site%20and%20would%20like%20to%20request%20your%20CFO%20resume.%0A%0A" class="btn-secondary">Request CFO Resume →</a>
       </div>
       <div class="contact-links">
         <a href="https://www.linkedin.com/in/karl-ohlemann/" class="contact-link" target="_blank">LinkedIn</a>
@@ -1080,6 +1267,7 @@
     <span class="footer-copy">© 2026 Karl Ohlemann · All Rights Reserved</span>
     <div class="footer-links">
       <a href="https://ksigadvisors.com">KSIG Advisors</a>
+      <a href="https://blackboxx.ai" target="_blank">BlackBoxx.ai</a>
       <a href="https://www.linkedin.com/in/karl-ohlemann/" target="_blank">LinkedIn</a>
       <a href="https://weheartcleelumroslyn.com" target="_blank">WeHeart</a>
     </div>
