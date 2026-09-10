@@ -9,7 +9,10 @@
   <meta property="og:title" content="Karl Ohlemann | CFO · Founder-Operator · AI Systems & Technology Strategy">
   <meta property="og:description" content="25+ years building, scaling, financing, and turning around companies. $0→$30M+ ARR and $200M+ cumulative revenue, with career-long depth in finance, operations, technology, and systems.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://karlohlemann.com">
+  <meta property="og:url" content="https://karlohlemann.com/">
+  <meta property="og:site_name" content="Karl Ohlemann">
+  <meta property="og:locale" content="en_US">
+  <link rel="canonical" href="https://karlohlemann.com/">
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="apple-touch-icon" href="/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,7 +33,7 @@
       --signal: #7FA8C6;
       --signal-soft: rgba(127,168,198,0.30);
       --signal-faint: rgba(127,168,198,0.055);
-      --warm-grey: #8A8278;
+      --warm-grey: #9B9388;
       --off-white: #E8E3D8;
       --display: 'Manrope', 'Inter', system-ui, -apple-system, sans-serif;
       --body: 'Inter', system-ui, sans-serif;
@@ -47,6 +50,8 @@
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
     }
+
+    [hidden] { display: none !important; }
 
     /* NAV */
     nav {
@@ -81,7 +86,7 @@
 
     .nav-links a {
       font-family: var(--mono);
-      font-size: 0.72rem;
+      font-size: 0.78rem;
       color: var(--warm-grey);
       text-decoration: none;
       letter-spacing: 0.08em;
@@ -90,6 +95,65 @@
     }
 
     .nav-links a:hover { color: var(--gold); }
+
+    /* MOBILE NAV */
+    .nav-toggle {
+      display: none;
+      align-items: center;
+      background: none;
+      border: 1px solid rgba(196,168,130,0.4);
+      color: var(--gold);
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.65rem 1.1rem;
+      min-height: 44px;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .nav-toggle:hover,
+    .nav-toggle:focus-visible {
+      border-color: var(--gold);
+      color: var(--gold-light);
+    }
+
+    .mobile-nav {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: rgba(10,10,10,0.98);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(196,168,130,0.2);
+    }
+
+    .mobile-nav-list {
+      list-style: none;
+      padding: 0.25rem 1.5rem 0.75rem;
+    }
+
+    .mobile-nav-list a {
+      display: flex;
+      align-items: center;
+      min-height: 48px;
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--parchment);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(196,168,130,0.12);
+      transition: color 0.2s;
+    }
+
+    .mobile-nav-list li:last-child a { border-bottom: none; }
+
+    .mobile-nav-list a:hover,
+    .mobile-nav-list a:focus-visible { color: var(--gold); }
 
     /* HERO */
     .hero {
@@ -104,7 +168,7 @@
 
     .hero-eyebrow {
       font-family: var(--mono);
-      font-size: 0.72rem;
+      font-size: 0.78rem;
       color: var(--gold);
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -162,7 +226,7 @@
 
     .metric-label {
       font-family: var(--mono);
-      font-size: 0.65rem;
+      font-size: 0.72rem;
       color: var(--warm-grey);
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -180,7 +244,7 @@
       background: var(--gold);
       color: var(--black);
       font-family: var(--mono);
-      font-size: 0.72rem;
+      font-size: 0.76rem;
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -199,7 +263,7 @@
       border: 1px solid rgba(196,168,130,0.4);
       color: var(--gold);
       font-family: var(--mono);
-      font-size: 0.72rem;
+      font-size: 0.76rem;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       text-decoration: none;
@@ -296,7 +360,7 @@
 
     .origin-eyebrow {
       font-family: var(--mono);
-      font-size: 0.65rem;
+      font-size: 0.72rem;
       color: var(--gold);
       letter-spacing: 0.15em;
       text-transform: uppercase;
@@ -335,7 +399,7 @@
 
     .section-eyebrow {
       font-family: var(--mono);
-      font-size: 0.65rem;
+      font-size: 0.72rem;
       color: var(--gold);
       letter-spacing: 0.15em;
       text-transform: uppercase;
@@ -370,7 +434,7 @@
 
     .career-dates {
       font-family: var(--mono);
-      font-size: 0.65rem;
+      font-size: 0.72rem;
       color: var(--gold);
       letter-spacing: 0.08em;
       margin-bottom: 0.5rem;
@@ -387,7 +451,7 @@
 
     .career-location {
       font-family: var(--mono);
-      font-size: 0.6rem;
+      font-size: 0.68rem;
       color: var(--warm-grey);
       letter-spacing: 0.06em;
     }
@@ -486,7 +550,7 @@
 
     .lane-title {
       font-family: var(--mono);
-      font-size: 0.65rem;
+      font-size: 0.72rem;
       color: var(--gold);
       letter-spacing: 0.1em;
       text-transform: uppercase;
@@ -524,7 +588,7 @@
 
     .cred-org {
       font-family: var(--mono);
-      font-size: 0.65rem;
+      font-size: 0.72rem;
       color: var(--gold);
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -618,7 +682,7 @@
 
     .edu-status {
       font-family: var(--mono);
-      font-size: 0.6rem;
+      font-size: 0.68rem;
       color: var(--gold);
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -685,6 +749,33 @@
       margin-bottom: 2.5rem;
     }
 
+    .resume-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .resume-alt {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--warm-grey);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(196,168,130,0.25);
+      padding-bottom: 0.2rem;
+      line-height: 1.7;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .resume-alt:hover,
+    .resume-alt:focus-visible {
+      color: var(--gold);
+      border-color: var(--gold);
+    }
+
     .contact-links {
       display: flex;
       justify-content: center;
@@ -695,7 +786,7 @@
 
     .contact-link {
       font-family: var(--mono);
-      font-size: 0.72rem;
+      font-size: 0.76rem;
       color: var(--gold);
       text-decoration: none;
       letter-spacing: 0.06em;
@@ -726,7 +817,7 @@
 
     .footer-copy {
       font-family: var(--mono);
-      font-size: 0.6rem;
+      font-size: 0.68rem;
       color: var(--warm-grey);
       letter-spacing: 0.06em;
     }
@@ -738,7 +829,7 @@
 
     .footer-links a {
       font-family: var(--mono);
-      font-size: 0.6rem;
+      font-size: 0.68rem;
       color: var(--warm-grey);
       text-decoration: none;
       letter-spacing: 0.06em;
@@ -838,7 +929,7 @@
 
     .tech-card-org {
       font-family: var(--mono);
-      font-size: 0.65rem;
+      font-size: 0.72rem;
       color: var(--signal);
       letter-spacing: 0.1em;
       text-transform: uppercase;
@@ -894,7 +985,7 @@
 
     .blackboxx-label {
       font-family: var(--mono);
-      font-size: 0.62rem;
+      font-size: 0.7rem;
       color: var(--signal);
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -913,7 +1004,7 @@
 
     .blackboxx-role {
       font-family: var(--mono);
-      font-size: 0.68rem;
+      font-size: 0.75rem;
       color: var(--off-white);
       letter-spacing: 0.06em;
       margin-bottom: 1.25rem;
@@ -981,6 +1072,8 @@
     @media (max-width: 768px) {
       nav { padding: 1rem 1.5rem; }
       .nav-links { display: none; }
+      .nav-toggle { display: inline-flex; }
+      .mobile-nav { display: block; }
       .hero { padding: 7rem 1.5rem 4rem; }
       .hero-metrics { gap: 1.5rem; }
       .photo-inner { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -1007,7 +1100,7 @@
 <body>
 
   <!-- NAV -->
-  <nav>
+  <nav aria-label="Primary">
     <a href="#" class="nav-name">Karl Ohlemann</a>
     <ul class="nav-links">
       <li><a href="#career">Career</a></li>
@@ -1016,6 +1109,16 @@
       <li><a href="#credentials">Credentials</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileNav">Menu</button>
+    <div class="mobile-nav" id="mobileNav" hidden>
+      <ul class="mobile-nav-list">
+        <li><a href="#career">Career</a></li>
+        <li><a href="#technology">Technology &amp; AI</a></li>
+        <li><a href="#ksig">KSIG Advisors</a></li>
+        <li><a href="#credentials">Credentials</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
   </nav>
 
   <!-- HERO -->
@@ -1060,11 +1163,10 @@
       <div class="photo-content">
         <h2>An operator first.<br><em>A CFO where it counts.</em></h2>
         <div class="gold-rule"></div>
-        <p>I've spent my career in the ownership and executive seats — building companies, managing capital, leading teams, solving operating problems, and making decisions when the answers weren't obvious.</p>
-        <p>That operating perspective shapes how I approach finance. I build visibility, strengthen systems, understand the economics, identify what matters, and turn financial information into executive action.</p>
-        <p>Legal and commercial strategy has also been a significant part of how I operate. Over 25+ years, I've worked closely with specialized outside counsel across corporate, contracts, employment, transactions, litigation, and regulatory matters while remaining deeply involved in issue analysis, drafting, negotiation, risk assessment, and strategy. I view outside counsel as expert partners, while retaining responsibility for the business judgment behind the decision.</p>
-        <p>I've scaled a company from zero to <strong>$30M+ ARR</strong>, built teams of 200+, raised growth capital, evaluated private-equity acquisition offers from the ownership seat, and most recently helped deliver a transformation from a <strong>$242K net loss to $2.34M net profit</strong> while revenue grew from $5.1M to $9.2M.</p>
-        <p>Financial records and controls have been tested through <strong>three forensic accounting reviews with minimal corrective adjustment</strong>.</p>
+        <p>I've spent my career in the ownership and executive seats — building companies, managing capital, leading teams, and making decisions when the answers weren't obvious.</p>
+        <p>That perspective shapes how I approach finance: visibility, stronger systems, a clear read on the economics, and financial information turned into executive action.</p>
+        <p>Legal and commercial strategy has been a meaningful part of that work. Over 25+ years I've worked closely with specialized outside counsel across contracts, employment, transactions, and regulatory matters — staying deeply involved in analysis, drafting, negotiation, and risk while retaining responsibility for the business judgment behind the decision.</p>
+        <p>I've scaled a company from zero to <strong>$30M+ ARR</strong>, built teams of 200+, raised growth capital, and evaluated private-equity acquisition offers from the ownership seat. Most recently I helped deliver a transformation from a <strong>$242K net loss to $2.34M net profit</strong> as revenue grew from $5.1M to $9.2M, with financial records and controls tested through three forensic accounting reviews with minimal corrective adjustment.</p>
         <p>Complex situations with high stakes and no clear playbook are where I do my best work.</p>
       </div>
     </div>
@@ -1367,8 +1469,9 @@
       <h2>Let's <em>talk.</em></h2>
       <p class="availability">I'm currently open to the right full-time CFO or senior executive finance opportunity, fractional CEO/CFO engagements, and select strategic advisory roles.</p>
       <p>If you're looking for an experienced operator who can connect finance, strategy, operations, technology, and execution, I'm always open to the right conversation.</p>
-      <div style="margin-bottom:2rem;">
-        <a href="mailto:karl.ohlemann@ksigadvisors.com?subject=CFO%20Resume%20Request%20%E2%80%94%20Karl%20Ohlemann&body=Hi%20Karl%2C%0A%0AI%20came%20across%20your%20site%20and%20would%20like%20to%20request%20your%20CFO%20resume.%0A%0A" class="btn-secondary">Request CFO Resume →</a>
+      <div class="resume-actions">
+        <a href="assets/Karl-Ohlemann-CFO-Resume.pdf" class="btn-primary" target="_blank" rel="noopener noreferrer">View CFO Résumé →</a>
+        <a href="mailto:karl.ohlemann@ksigadvisors.com?subject=Role-Specific%20R%C3%A9sum%C3%A9%20Request%20%E2%80%94%20Karl%20Ohlemann&body=Hi%20Karl%2C%0A%0AWe%27re%20hiring%20for%20a%20specific%20role%20and%20would%20like%20a%20tailored%20version%20of%20your%20r%C3%A9sum%C3%A9.%0A%0ARole%3A%20%0ACompany%3A%20%0A%0A" class="resume-alt">Hiring for a specific role? Request a tailored résumé</a>
       </div>
       <div class="contact-links">
         <a href="https://www.linkedin.com/in/karl-ohlemann/" class="contact-link" target="_blank">LinkedIn</a>
@@ -1390,6 +1493,38 @@
       <a href="https://weheartcleelumroslyn.com" target="_blank">WeHeart</a>
     </div>
   </footer>
+
+
+  <script>
+    (function () {
+      var toggle = document.getElementById('navToggle');
+      var panel = document.getElementById('mobileNav');
+      if (!toggle || !panel) return;
+
+      function setOpen(open) {
+        panel.hidden = !open;
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        toggle.textContent = open ? 'Close' : 'Menu';
+      }
+
+      toggle.addEventListener('click', function () { setOpen(panel.hidden); });
+
+      panel.addEventListener('click', function (e) {
+        if (e.target && e.target.closest && e.target.closest('a')) setOpen(false);
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if ((e.key === 'Escape' || e.key === 'Esc') && !panel.hidden) {
+          setOpen(false);
+          toggle.focus();
+        }
+      });
+
+      window.addEventListener('resize', function () {
+        if (window.innerWidth > 768 && !panel.hidden) setOpen(false);
+      });
+    })();
+  </script>
 
 </body>
 </html>
