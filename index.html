@@ -26,6 +26,10 @@
       --slate: #2A3B4C;
       --slate-mid: #3D5166;
       --sage: #6B8F71;
+      /* Cool secondary accent — Technology & AI / BlackBoxx elements only */
+      --signal: #7FA8C6;
+      --signal-soft: rgba(127,168,198,0.30);
+      --signal-faint: rgba(127,168,198,0.055);
       --warm-grey: #8A8278;
       --off-white: #E8E3D8;
       --display: 'Manrope', 'Inter', system-ui, -apple-system, sans-serif;
@@ -747,12 +751,32 @@
     .tech {
       background: var(--slate);
       padding: 6rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Fine systems grid — faded so it reads as texture, not graph paper */
+    .tech::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--signal-faint) 1px, transparent 1px),
+        linear-gradient(90deg, var(--signal-faint) 1px, transparent 1px);
+      background-size: 56px 56px;
+      -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.45) 45%, rgba(0,0,0,0) 85%);
+      mask-image: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.45) 45%, rgba(0,0,0,0) 85%);
+      pointer-events: none;
     }
 
     .tech-inner {
       max-width: 1100px;
       margin: 0 auto;
+      position: relative;
+      z-index: 1;
     }
+
+    .tech .section-eyebrow { color: var(--signal); }
 
     .tech .section-title {
       margin-bottom: 2rem;
@@ -777,18 +801,45 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 1.5rem;
       margin-top: 3rem;
+      position: relative;
+    }
+
+    /* Connector running behind the gaps, linking the three nodes */
+    .tech-grid::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(127,168,198,0.45), rgba(127,168,198,0.14));
+      pointer-events: none;
     }
 
     .tech-card {
       padding: 1.75rem;
       background: rgba(10,10,10,0.3);
-      border-top: 2px solid var(--gold);
+      border-top: 2px solid var(--signal);
+      position: relative;
+    }
+
+    /* Node marker seated on the connector */
+    .tech-card::before {
+      content: '';
+      position: absolute;
+      top: -4px;
+      left: 1.75rem;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--signal);
+      box-shadow: 0 0 0 3px var(--slate);
     }
 
     .tech-card-org {
       font-family: var(--mono);
       font-size: 0.65rem;
-      color: var(--gold);
+      color: var(--signal);
       letter-spacing: 0.1em;
       text-transform: uppercase;
       margin-bottom: 0.6rem;
@@ -813,13 +864,38 @@
       margin-top: 3rem;
       padding: 2.5rem;
       background: rgba(10,10,10,0.4);
-      border: 1px solid rgba(196,168,130,0.18);
+      border: 1px solid rgba(127,168,198,0.18);
+      position: relative;
+    }
+
+    /* Drafting-style corner brackets */
+    .blackboxx::before,
+    .blackboxx::after {
+      content: '';
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      pointer-events: none;
+    }
+
+    .blackboxx::before {
+      top: -1px;
+      left: -1px;
+      border-top: 2px solid var(--signal);
+      border-left: 2px solid var(--signal);
+    }
+
+    .blackboxx::after {
+      bottom: -1px;
+      right: -1px;
+      border-bottom: 2px solid var(--signal);
+      border-right: 2px solid var(--signal);
     }
 
     .blackboxx-label {
       font-family: var(--mono);
       font-size: 0.62rem;
-      color: var(--gold);
+      color: var(--signal);
       letter-spacing: 0.12em;
       text-transform: uppercase;
       margin-bottom: 0.9rem;
@@ -860,6 +936,26 @@
 
     .inline-link:hover { border-color: var(--gold); }
 
+    /* Technology-scoped variants of existing components */
+    .inline-link--signal {
+      color: var(--signal);
+      border-bottom-color: var(--signal-soft);
+    }
+
+    .inline-link--signal:hover { border-color: var(--signal); }
+
+    .btn-signal {
+      border-color: rgba(127,168,198,0.45);
+      color: var(--signal);
+    }
+
+    .btn-signal:hover {
+      border-color: var(--signal);
+      color: #A6C6DC;
+    }
+
+    .nav-links a[href="#technology"]:hover { color: var(--signal); }
+
     .ksig-note {
       font-size: 0.9rem;
       line-height: 1.65;
@@ -895,6 +991,8 @@
       .edu-grid { grid-template-columns: 1fr; }
       .tech { padding: 4.5rem 1.5rem; }
       .tech-grid { grid-template-columns: 1fr; }
+      .tech-grid::before { display: none; }
+      .tech::before { background-size: 40px 40px; }
       .blackboxx { padding: 1.75rem 1.35rem; }
       .hero-metrics { gap: 1.25rem 1.75rem; }
       footer { flex-direction: column; gap: 1rem; text-align: center; }
@@ -1003,7 +1101,7 @@
         <p class="blackboxx-role">Principal | AI Systems and Automation Architect</p>
         <p class="blackboxx-desc">BlackBoxx.ai is an independent AI Systems Lab focused on building and pressure-testing practical agentic systems, automation, orchestration, and AI integration across real-world business workflows.</p>
         <p class="blackboxx-desc">I design and test multi-agent systems, agent specialization, AI/tool integration, workflow automation, and AI-enabled operating systems — applying emerging capabilities to finance, research, executive decision support, operations, and business-process automation.</p>
-        <a href="https://blackboxx.ai" class="btn-secondary" style="margin-top:1.5rem;" target="_blank" rel="noopener">Explore BlackBoxx.ai →</a>
+        <a href="https://blackboxx.ai" class="btn-secondary btn-signal" style="margin-top:1.5rem;" target="_blank" rel="noopener">Explore BlackBoxx.ai →</a>
       </div>
     </div>
   </section>
@@ -1052,7 +1150,7 @@
       </div>
       <div class="career-content">
         <h3>Principal · AI Systems and Automation Architect</h3>
-        <p>Independent AI Systems Lab building and pressure-testing practical agentic systems, automation, orchestration, and AI integration across real-world business workflows — applied to finance, research, executive decision support, operations, and business-process automation. <a href="https://blackboxx.ai" target="_blank" rel="noopener" class="inline-link">blackboxx.ai →</a></p>
+        <p>Independent AI Systems Lab building and pressure-testing practical agentic systems, automation, orchestration, and AI integration across real-world business workflows — applied to finance, research, executive decision support, operations, and business-process automation. <a href="https://blackboxx.ai" target="_blank" rel="noopener" class="inline-link inline-link--signal">blackboxx.ai →</a></p>
       </div>
     </div>
 
