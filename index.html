@@ -14,7 +14,7 @@
   <link rel="apple-touch-icon" href="/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -28,7 +28,7 @@
       --sage: #6B8F71;
       --warm-grey: #8A8278;
       --off-white: #E8E3D8;
-      --display: 'Playfair Display', Georgia, serif;
+      --display: 'Manrope', 'Inter', system-ui, -apple-system, sans-serif;
       --body: 'Inter', system-ui, sans-serif;
       --mono: 'Space Mono', monospace;
     }
@@ -62,10 +62,10 @@
 
     .nav-name {
       font-family: var(--display);
-      font-size: 1.1rem;
-      font-weight: 600;
+      font-size: 1rem;
+      font-weight: 700;
       color: var(--gold);
-      letter-spacing: 0.02em;
+      letter-spacing: -0.01em;
       text-decoration: none;
     }
 
@@ -109,16 +109,18 @@
 
     .hero-headline {
       font-family: var(--display);
-      font-size: clamp(2.8rem, 6vw, 5.5rem);
-      font-weight: 700;
-      line-height: 1.05;
+      font-size: clamp(2.35rem, 5.1vw, 4.6rem);
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      line-height: 1.08;
       color: var(--parchment);
       margin-bottom: 2rem;
       max-width: 900px;
     }
 
     .hero-headline em {
-      font-style: italic;
+      font-style: normal;
+      font-weight: 800;
       color: var(--gold);
     }
 
@@ -147,8 +149,9 @@
 
     .metric-value {
       font-family: var(--display);
-      font-size: 1.8rem;
+      font-size: 1.5rem;
       font-weight: 700;
+      letter-spacing: -0.025em;
       color: var(--gold);
       line-height: 1;
     }
@@ -248,15 +251,16 @@
 
     .photo-content h2 {
       font-family: var(--display);
-      font-size: clamp(1.8rem, 3vw, 2.8rem);
-      font-weight: 600;
+      font-size: clamp(1.55rem, 2.5vw, 2.3rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
       color: var(--parchment);
-      line-height: 1.2;
+      line-height: 1.18;
       margin-bottom: 1.5rem;
     }
 
     .photo-content h2 em {
-      font-style: italic;
+      font-style: normal;
       color: var(--gold);
     }
 
@@ -297,9 +301,9 @@
 
     .origin-quote {
       font-family: var(--display);
-      font-size: clamp(1.6rem, 3.5vw, 2.8rem);
-      font-style: italic;
-      font-weight: 400;
+      font-size: clamp(1.4rem, 2.8vw, 2.1rem);
+      font-weight: 600;
+      letter-spacing: -0.025em;
       color: var(--parchment);
       line-height: 1.35;
       margin-bottom: 2.5rem;
@@ -336,11 +340,12 @@
 
     .section-title {
       font-family: var(--display);
-      font-size: clamp(1.8rem, 3vw, 2.8rem);
-      font-weight: 600;
+      font-size: clamp(1.55rem, 2.5vw, 2.3rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
       color: var(--parchment);
       margin-bottom: 3.5rem;
-      line-height: 1.2;
+      line-height: 1.18;
     }
 
     .career-item {
@@ -369,8 +374,9 @@
 
     .career-company {
       font-family: var(--display);
-      font-size: 1rem;
-      font-weight: 600;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: -0.012em;
       color: var(--off-white);
       margin-bottom: 0.25rem;
     }
@@ -384,8 +390,9 @@
 
     .career-content h3 {
       font-family: var(--display);
-      font-size: 1.2rem;
-      font-weight: 600;
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -0.018em;
       color: var(--parchment);
       margin-bottom: 0.75rem;
     }
@@ -442,15 +449,16 @@
 
     .ksig-cta h2 {
       font-family: var(--display);
-      font-size: clamp(1.8rem, 3vw, 2.8rem);
-      font-weight: 600;
+      font-size: clamp(1.55rem, 2.5vw, 2.3rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
       color: var(--parchment);
-      line-height: 1.2;
+      line-height: 1.18;
       margin-bottom: 1.5rem;
     }
 
     .ksig-cta h2 em {
-      font-style: italic;
+      font-style: normal;
       color: var(--gold);
     }
 
@@ -543,6 +551,11 @@
       margin-top: 2.5rem;
     }
 
+    .venture-grid--single {
+      grid-template-columns: 1fr;
+      max-width: 760px;
+    }
+
     .venture-item {
       padding: 2rem;
       background: rgba(10,10,10,0.3);
@@ -551,8 +564,9 @@
 
     .venture-name {
       font-family: var(--display);
-      font-size: 1.1rem;
-      font-weight: 600;
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -0.018em;
       color: var(--parchment);
       margin-bottom: 0.75rem;
     }
@@ -584,8 +598,9 @@
 
     .edu-institution {
       font-family: var(--display);
-      font-size: 1rem;
-      font-weight: 600;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: -0.012em;
       color: var(--parchment);
       margin-bottom: 0.35rem;
     }
@@ -620,15 +635,16 @@
 
     .personal p {
       font-family: var(--display);
-      font-size: 1.2rem;
-      font-style: italic;
+      font-size: 1.05rem;
+      font-weight: 500;
+      letter-spacing: -0.012em;
       color: var(--warm-grey);
-      line-height: 1.7;
+      line-height: 1.75;
     }
 
     .personal p strong {
       color: var(--parchment);
-      font-style: normal;
+      font-weight: 700;
     }
 
     /* CONTACT */
@@ -645,15 +661,16 @@
 
     .contact h2 {
       font-family: var(--display);
-      font-size: clamp(2rem, 4vw, 3.5rem);
-      font-weight: 700;
+      font-size: clamp(1.85rem, 3.3vw, 2.9rem);
+      font-weight: 800;
+      letter-spacing: -0.035em;
       color: var(--parchment);
       margin-bottom: 1.25rem;
-      line-height: 1.15;
+      line-height: 1.12;
     }
 
     .contact h2 em {
-      font-style: italic;
+      font-style: normal;
       color: var(--gold);
     }
 
@@ -697,7 +714,9 @@
 
     .footer-name {
       font-family: var(--display);
-      font-size: 0.9rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
       color: var(--gold);
     }
 
@@ -777,8 +796,9 @@
 
     .tech-card-title {
       font-family: var(--display);
-      font-size: 1.05rem;
-      font-weight: 600;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.018em;
       color: var(--parchment);
       margin-bottom: 0.4rem;
     }
@@ -807,8 +827,9 @@
 
     .blackboxx-title {
       font-family: var(--display);
-      font-size: 1.6rem;
-      font-weight: 700;
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
       color: var(--parchment);
       line-height: 1.2;
       margin-bottom: 0.35rem;
@@ -949,18 +970,6 @@
     </div>
   </section>
 
-  <!-- ORIGIN STORY -->
-  <section class="origin">
-    <div class="origin-inner">
-      <p class="origin-eyebrow">Where I Come From</p>
-      <p class="origin-quote">"The people who build lasting things do it through will, over time, without a safety net."</p>
-      <p class="origin-body">My story starts before I was born. My father, <strong>Siegmar Karl Ohlemann</strong>, escaped East Germany at 14 — separated from his parents and brother, crossing into the West with nothing. He made his way to Canada, became the fastest 800 meter runner in North America, won Silver at the Pan American Games, and carried Canada's closing ceremony flag at the 1960 Rome Olympics.</p>
-      <p class="origin-body">He trained under <strong>Bill Bowerman</strong> at the University of Oregon alongside a young <strong>Phil Knight</strong>, and remained a lifelong friend of both men. He's named in <em>Bowerman and the Men of Oregon</em> — the book that documents the founding of Nike.</p>
-      <p class="origin-body">My grandfather on my mother's side, <strong>Nils Bernard Hult</strong>, was a businessman and philanthropist whose impact was permanent enough that the Hult Center for the Performing Arts in Eugene, Oregon carries his name today.</p>
-      <p class="origin-body">I grew up inside two legacies: a man who built everything from nothing across three countries, and a man who built something that outlasted him. That combination shapes how I think about building businesses.</p>
-    </div>
-  </section>
-
   <!-- TECHNOLOGY & AI -->
   <section class="tech" id="technology">
     <div class="tech-inner">
@@ -1074,7 +1083,7 @@
           <li>200+ employees across multiple locations at 50%+ YoY growth</li>
           <li>Nearly 10,000 homes completed across WA and OR</li>
           <li>Raised growth capital; negotiated all lines of credit and financing instruments</li>
-          <li><strong>Evaluated and declined acquisition offers from two PE firms</strong> — market call proved correct as the business subsequently achieved its highest revenue performance</li>
+          <li><strong>Evaluated and declined acquisition offers from two PE firms</strong> — the company subsequently achieved its highest revenue performance</li>
         </ul>
       </div>
     </div>
@@ -1191,20 +1200,12 @@
   <!-- VENTURES -->
   <section class="ventures">
     <div class="ventures-inner">
-      <p class="section-eyebrow">Community & Ventures</p>
+      <p class="section-eyebrow">Community</p>
       <h2 class="section-title">Beyond the Work</h2>
-      <div class="venture-grid">
+      <div class="venture-grid venture-grid--single">
         <div class="venture-item">
           <p class="venture-name">WeHeartCleElumRoslyn, SPC</p>
           <p class="venture-desc">A Social Purpose Corporation my wife Stacey and I founded for community advocacy in Kittitas County. When the City of Cle Elum faced a $25M+ arbitration judgment threatening municipal bankruptcy, I applied CFO-level financial analysis — advocating publicly for receivership and organizing a PAC to restructure city governance.</p>
-        </div>
-        <div class="venture-item">
-          <p class="venture-name">Visitoll</p>
-          <p class="venture-desc">Early-stage venture exploring a partnership with Metropolis — a leading AI-powered vehicle tracking platform — to license their technology to small cities for municipal toll collection. A revenue model that replaces fragmented parking enforcement with a simpler, technology-enabled alternative.</p>
-        </div>
-        <div class="venture-item">
-          <p class="venture-name">Curate Holdings</p>
-          <p class="venture-desc">Personal holding company for intellectual property, brand concepts, and early-stage business ventures across multiple sectors.</p>
         </div>
       </div>
     </div>
@@ -1233,6 +1234,18 @@
         <p class="edu-institution">University of Oregon</p>
         <p class="edu-degree">Lundquist College of Business · Business Administration & Management Coursework · 1993–1997</p>
       </div>
+    </div>
+  </section>
+
+  <!-- ORIGIN STORY -->
+  <section class="origin">
+    <div class="origin-inner">
+      <p class="origin-eyebrow">Where I Come From</p>
+      <p class="origin-quote">"The people who build lasting things do it through will, over time, without a safety net."</p>
+      <p class="origin-body">My story starts before I was born. My father, <strong>Siegmar Karl Ohlemann</strong>, escaped East Germany at 14 — separated from his parents and brother, crossing into the West with nothing. He made his way to Canada, became the fastest 800 meter runner in North America, won Silver at the Pan American Games, and carried Canada's closing ceremony flag at the 1960 Rome Olympics.</p>
+      <p class="origin-body">He trained under <strong>Bill Bowerman</strong> at the University of Oregon alongside a young <strong>Phil Knight</strong>, and remained a lifelong friend of both men. He's named in <em>Bowerman and the Men of Oregon</em> — the book that documents the founding of Nike.</p>
+      <p class="origin-body">My grandfather on my mother's side, <strong>Nils Bernard Hult</strong>, was a businessman and philanthropist whose impact was permanent enough that the Hult Center for the Performing Arts in Eugene, Oregon carries his name today.</p>
+      <p class="origin-body">I grew up inside two legacies: a man who built everything from nothing across three countries, and a man who built something that outlasted him. That combination shapes how I think about building businesses.</p>
     </div>
   </section>
 
