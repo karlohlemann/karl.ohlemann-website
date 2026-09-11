@@ -22,19 +22,35 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --black: #0A0A0A;
-      --parchment: #F5F0E8;
-      --gold: #C4A882;
-      --gold-light: #D4BC9A;
-      --slate: #2A3B4C;
-      --slate-mid: #3D5166;
+      /* Surfaces — obsidian through gunmetal */
+      --black: #090A0C;          /* obsidian — primary background */
+      --near-black: #0D0F12;     /* alternating surface */
+      --graphite: #171A1F;       /* alternating surface */
+      --gunmetal: #20242A;       /* cards, inset panels, nested surfaces */
+
+      /* Type */
+      --parchment: #F2EEE7;      /* warm white — primary text */
+      --off-white: #DFDAD2;      /* mid-emphasis text */
+      --warm-grey: #9A9DA3;      /* titanium grey — secondary text */
+
+      /* Executive accent — dominant */
+      --gold: #B98A4A;           /* burnished brass */
+      --gold-light: #D1A45F;     /* brass highlight */
+
+      /* Technology accent — selective, Technology & AI / BlackBoxx only */
+      --signal: #F05A28;         /* signal orange */
+      --signal-light: #FF7A4D;   /* orange hover */
+      --signal-soft: rgba(240,90,40,0.28);
+      --signal-faint: rgba(240,90,40,0.04);
+
+      /* High-stakes accent — rarest */
+      --red: #B72C2C;            /* deep red — hairlines, indicators */
+      --red-bright: #BE3630;     /* deep red, legible at metric size */
+
+      /* Legacy aliases retained so no rule silently loses its surface */
+      --slate: #171A1F;
+      --slate-mid: #20242A;
       --sage: #6B8F71;
-      /* Cool secondary accent — Technology & AI / BlackBoxx elements only */
-      --signal: #7FA8C6;
-      --signal-soft: rgba(127,168,198,0.30);
-      --signal-faint: rgba(127,168,198,0.055);
-      --warm-grey: #9B9388;
-      --off-white: #E8E3D8;
       --display: 'Manrope', 'Inter', system-ui, -apple-system, sans-serif;
       --body: 'Inter', system-ui, sans-serif;
       --mono: 'Space Mono', monospace;
@@ -64,9 +80,9 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(10,10,10,0.92);
+      background: rgba(9,10,12,0.94);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(196,168,130,0.15);
+      border-bottom: 1px solid rgba(185,138,74,0.15);
     }
 
     .nav-name {
@@ -101,7 +117,7 @@
       display: none;
       align-items: center;
       background: none;
-      border: 1px solid rgba(196,168,130,0.4);
+      border: 1px solid rgba(185,138,74,0.4);
       color: var(--gold);
       font-family: var(--mono);
       font-size: 0.78rem;
@@ -126,9 +142,9 @@
       top: 100%;
       left: 0;
       right: 0;
-      background: rgba(10,10,10,0.98);
+      background: rgba(13,15,18,0.98);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(196,168,130,0.2);
+      border-bottom: 1px solid rgba(185,138,74,0.2);
     }
 
     .mobile-nav-list {
@@ -146,7 +162,7 @@
       text-transform: uppercase;
       color: var(--parchment);
       text-decoration: none;
-      border-bottom: 1px solid rgba(196,168,130,0.12);
+      border-bottom: 1px solid rgba(185,138,74,0.12);
       transition: color 0.2s;
     }
 
@@ -206,7 +222,7 @@
       flex-wrap: wrap;
       margin-bottom: 3rem;
       padding-top: 2rem;
-      border-top: 1px solid rgba(196,168,130,0.2);
+      border-top: 1px solid rgba(185,138,74,0.2);
     }
 
     .metric {
@@ -223,6 +239,9 @@
       color: var(--gold);
       line-height: 1;
     }
+
+    /* High-stakes cue: the loss reads deep red, the recovery stays brass */
+    .metric-loss { color: var(--red-bright); }
 
     .metric-label {
       font-family: var(--mono);
@@ -260,7 +279,7 @@
     .btn-secondary {
       display: inline-block;
       padding: 0.875rem 2rem;
-      border: 1px solid rgba(196,168,130,0.4);
+      border: 1px solid rgba(185,138,74,0.4);
       color: var(--gold);
       font-family: var(--mono);
       font-size: 0.76rem;
@@ -277,7 +296,7 @@
 
     /* PHOTO SECTION */
     .photo-section {
-      background: var(--slate);
+      background: var(--graphite);
       padding: 5rem 2.5rem;
     }
 
@@ -307,7 +326,7 @@
     .photo-img-placeholder {
       width: 100%;
       aspect-ratio: 4/5;
-      background: var(--slate-mid);
+      background: var(--gunmetal);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -346,10 +365,10 @@
 
     /* ORIGIN STORY */
     .origin {
-      background: var(--black);
+      background: var(--near-black);
       padding: 7rem 2.5rem;
-      border-top: 1px solid rgba(196,168,130,0.1);
-      border-bottom: 1px solid rgba(196,168,130,0.1);
+      border-top: 1px solid rgba(185,138,74,0.1);
+      border-bottom: 1px solid rgba(185,138,74,0.1);
     }
 
     .origin-inner {
@@ -421,11 +440,11 @@
       grid-template-columns: 200px 1fr;
       gap: 2.5rem;
       padding: 2.5rem 0;
-      border-top: 1px solid rgba(196,168,130,0.12);
+      border-top: 1px solid rgba(185,138,74,0.12);
     }
 
     .career-item:last-child {
-      border-bottom: 1px solid rgba(196,168,130,0.12);
+      border-bottom: 1px solid rgba(185,138,74,0.12);
     }
 
     .career-meta {
@@ -502,7 +521,7 @@
 
     /* KSIG CTA */
     .ksig-cta {
-      background: var(--slate);
+      background: var(--graphite);
       padding: 6rem 2.5rem;
     }
 
@@ -544,8 +563,8 @@
 
     .lane {
       padding: 1.25rem 1.5rem;
-      border: 1px solid rgba(196,168,130,0.15);
-      background: rgba(10,10,10,0.4);
+      border: 1px solid rgba(185,138,74,0.15);
+      background: var(--gunmetal);
     }
 
     .lane-title {
@@ -583,7 +602,7 @@
 
     .cred-item {
       padding: 1.5rem;
-      border: 1px solid rgba(196,168,130,0.12);
+      border: 1px solid rgba(185,138,74,0.12);
     }
 
     .cred-org {
@@ -603,7 +622,7 @@
 
     /* VENTURES */
     .ventures {
-      background: var(--slate);
+      background: var(--graphite);
       padding: 6rem 2.5rem;
     }
 
@@ -626,7 +645,7 @@
 
     .venture-item {
       padding: 2rem;
-      background: rgba(10,10,10,0.3);
+      background: var(--gunmetal);
       border-top: 2px solid var(--gold);
     }
 
@@ -661,7 +680,7 @@
 
     .edu-item {
       padding: 1.75rem;
-      border: 1px solid rgba(196,168,130,0.12);
+      border: 1px solid rgba(185,138,74,0.12);
     }
 
     .edu-institution {
@@ -692,7 +711,7 @@
     .personal {
       background: var(--black);
       padding: 5rem 2.5rem;
-      border-top: 1px solid rgba(196,168,130,0.1);
+      border-top: 1px solid rgba(185,138,74,0.1);
     }
 
     .personal-inner {
@@ -717,7 +736,7 @@
 
     /* CONTACT */
     .contact {
-      background: var(--slate);
+      background: var(--graphite);
       padding: 6rem 2.5rem;
       text-align: center;
     }
@@ -764,7 +783,7 @@
       text-transform: uppercase;
       color: var(--warm-grey);
       text-decoration: none;
-      border-bottom: 1px solid rgba(196,168,130,0.25);
+      border-bottom: 1px solid rgba(185,138,74,0.25);
       padding-bottom: 0.2rem;
       line-height: 1.7;
       transition: color 0.2s, border-color 0.2s;
@@ -790,7 +809,7 @@
       color: var(--gold);
       text-decoration: none;
       letter-spacing: 0.06em;
-      border-bottom: 1px solid rgba(196,168,130,0.3);
+      border-bottom: 1px solid rgba(185,138,74,0.3);
       padding-bottom: 0.15rem;
       transition: border-color 0.2s;
     }
@@ -804,7 +823,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-top: 1px solid rgba(196,168,130,0.1);
+      border-top: 1px solid rgba(185,138,74,0.1);
     }
 
     .footer-name {
@@ -840,7 +859,7 @@
 
     /* TECHNOLOGY & AI */
     .tech {
-      background: var(--slate);
+      background: var(--near-black);
       padding: 6rem 2.5rem;
       position: relative;
       overflow: hidden;
@@ -868,6 +887,15 @@
     }
 
     .tech .section-eyebrow { color: var(--signal); }
+
+    /* Faint technology rule under the section heading */
+    .tech .section-title {
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(240,90,40,0.14);
+    }
+
+    .tech-card { transition: border-color 0.2s, background 0.2s; }
+    .tech-card:hover { border-top-color: var(--gold-light); }
 
     .tech .section-title {
       margin-bottom: 2rem;
@@ -903,14 +931,14 @@
       left: 0;
       right: 0;
       height: 1px;
-      background: linear-gradient(90deg, rgba(127,168,198,0.45), rgba(127,168,198,0.14));
+      background: linear-gradient(90deg, rgba(240,90,40,0.38), rgba(240,90,40,0.10));
       pointer-events: none;
     }
 
     .tech-card {
       padding: 1.75rem;
-      background: rgba(10,10,10,0.3);
-      border-top: 2px solid var(--signal);
+      background: var(--gunmetal);
+      border-top: 1px solid rgba(240,90,40,0.55);
       position: relative;
     }
 
@@ -918,13 +946,13 @@
     .tech-card::before {
       content: '';
       position: absolute;
-      top: -4px;
+      top: -3.5px;
       left: 1.75rem;
       width: 7px;
       height: 7px;
       border-radius: 50%;
       background: var(--signal);
-      box-shadow: 0 0 0 3px var(--slate);
+      box-shadow: 0 0 0 3px var(--near-black);
     }
 
     .tech-card-org {
@@ -954,9 +982,31 @@
     .blackboxx {
       margin-top: 3rem;
       padding: 2.5rem;
-      background: rgba(10,10,10,0.4);
-      border: 1px solid rgba(127,168,198,0.18);
+      background: var(--near-black);
+      border: 1px solid rgba(185,138,74,0.30);
       position: relative;
+    }
+
+    /* Signal-orange indicator bar across the top edge */
+    .blackboxx-bar {
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      width: 96px;
+      height: 2px;
+      background: var(--signal);
+    }
+
+    /* Live indicator beside the lab label */
+    .blackboxx-label::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      margin-right: 0.7rem;
+      vertical-align: 0.08em;
+      background: var(--signal);
+      box-shadow: 0 0 0 3px rgba(240,90,40,0.16);
     }
 
     /* Drafting-style corner brackets */
@@ -972,15 +1022,15 @@
     .blackboxx::before {
       top: -1px;
       left: -1px;
-      border-top: 2px solid var(--signal);
-      border-left: 2px solid var(--signal);
+      border-top: 2px solid var(--gold);
+      border-left: 2px solid var(--gold);
     }
 
     .blackboxx::after {
       bottom: -1px;
       right: -1px;
-      border-bottom: 2px solid var(--signal);
-      border-right: 2px solid var(--signal);
+      border-bottom: 2px solid var(--gold);
+      border-right: 2px solid var(--gold);
     }
 
     .blackboxx-label {
@@ -1021,7 +1071,7 @@
     .inline-link {
       color: var(--gold);
       text-decoration: none;
-      border-bottom: 1px solid rgba(196,168,130,0.35);
+      border-bottom: 1px solid rgba(185,138,74,0.35);
       white-space: nowrap;
     }
 
@@ -1036,13 +1086,13 @@
     .inline-link--signal:hover { border-color: var(--signal); }
 
     .btn-signal {
-      border-color: rgba(127,168,198,0.45);
+      border-color: rgba(240,90,40,0.45);
       color: var(--signal);
     }
 
     .btn-signal:hover {
       border-color: var(--signal);
-      color: #A6C6DC;
+      color: var(--signal-light);
     }
 
     .nav-links a[href="#technology"]:hover { color: var(--signal); }
@@ -1136,7 +1186,7 @@
         <span class="metric-label">Revenue Built</span>
       </div>
       <div class="metric">
-        <span class="metric-value">$242K→$2.34M</span>
+        <span class="metric-value"><span class="metric-loss">$242K</span>→$2.34M</span>
         <span class="metric-label">Loss to Profit, 12 Months</span>
       </div>
       <div class="metric">
@@ -1200,6 +1250,7 @@
       </div>
 
       <div class="blackboxx">
+        <span class="blackboxx-bar" aria-hidden="true"></span>
         <p class="blackboxx-label">Independent AI Systems Lab · Since October 2023</p>
         <h3 class="blackboxx-title">BlackBoxx.ai</h3>
         <p class="blackboxx-role">Principal | AI Systems and Automation Architect</p>
