@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>document.documentElement.className+=' js';</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Karl Ohlemann | CFO · Founder-Operator · AI Systems & Technology Strategy</title>
@@ -867,7 +868,9 @@
       background: var(--near-black);
       padding: 6rem 2.5rem;
       position: relative;
-      overflow: hidden;
+      /* NOTE: no overflow:hidden here — it breaks position:sticky for the
+         pinned systems sequence. The grid layer is inset-0 absolute, so it
+         cannot overflow anyway. */
     }
 
     /* Fine systems grid — faded so it reads as texture, not graph paper */
@@ -924,7 +927,7 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1.5rem;
-      margin-top: 3rem;
+      margin-top: 1.75rem;
       position: relative;
     }
 
@@ -1123,6 +1126,499 @@
 
 
 
+
+    /* ============================================================
+       MOTION & INTERACTION SYSTEM
+       Transform/opacity only. Nothing loops. All of it degrades to
+       static, readable content without JS and under reduced motion.
+       ============================================================ */
+
+    :root {
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --dur: 0.8s;
+    }
+
+    /* ---------- page progress rail (desktop) ---------- */
+    .progress-rail {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 2px;
+      height: 100vh;
+      z-index: 90;
+      background: rgba(185,138,74,0.10);
+      pointer-events: none;
+    }
+
+    .progress-rail span {
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, var(--gold), rgba(185,138,74,0.35));
+      transform: scaleY(var(--p, 0));
+      transform-origin: top;
+    }
+
+    /* ---------- generic reveal ---------- */
+    .js .reveal {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+
+    .js .reveal.in {
+      opacity: 1;
+      transform: none;
+      transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+      transition-delay: calc(var(--d, 0) * 90ms);
+    }
+
+    /* ---------- nav active state ---------- */
+    .nav-links a { position: relative; }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -6px;
+      height: 1px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s var(--ease);
+    }
+
+    .nav-links a.is-active::after { transform: scaleX(1); }
+
+    .nav-links a:focus-visible,
+    .mobile-nav-list a:focus-visible,
+    .btn-primary:focus-visible,
+    .btn-secondary:focus-visible,
+    .contact-link:focus-visible,
+    .resume-alt:focus-visible,
+    .inline-link:focus-visible {
+      outline: 2px solid var(--gold-light);
+      outline-offset: 3px;
+    }
+
+    /* ---------- HERO ---------- */
+    .hero { position: relative; overflow: hidden; }
+
+    .hero-grid {
+      position: absolute;
+      inset: -10% -5% 0 -5%;
+      background-image:
+        linear-gradient(rgba(185,138,74,0.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(185,138,74,0.055) 1px, transparent 1px);
+      background-size: 72px 72px;
+      -webkit-mask-image: radial-gradient(115% 78% at 22% 20%, rgba(0,0,0,0.9), transparent 72%);
+      mask-image: radial-gradient(115% 78% at 22% 20%, rgba(0,0,0,0.9), transparent 72%);
+      transform: translate3d(0, var(--sy, 0px), 0);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero > *:not(.hero-grid) { position: relative; z-index: 1; }
+
+    .hero-headline .hl { display: block; overflow: hidden; }
+    .hero-headline .hl > span { display: block; will-change: transform; }
+
+    .js .hero-headline .hl > span {
+      transform: translateY(105%);
+      animation: hl-rise 0.95s var(--ease) forwards;
+    }
+
+    .js .hero-headline .hl:nth-child(1) > span { animation-delay: 0.10s; }
+    .js .hero-headline .hl:nth-child(2) > span { animation-delay: 0.20s; }
+    .js .hero-headline .hl:nth-child(3) > span { animation-delay: 0.30s; }
+
+    @keyframes hl-rise { to { transform: translateY(0); } }
+
+    /* brass emphasis resolves after the white type has landed */
+    .js .hero-headline em {
+      color: var(--parchment);
+      animation: brass-resolve 0.7s var(--ease) 1.05s forwards;
+    }
+
+    @keyframes brass-resolve { to { color: var(--gold); } }
+
+    .js .hero-eyebrow,
+    .js .hero-sub,
+    .js .hero-cta,
+    .js .hero-metrics .metric {
+      opacity: 0;
+      animation: settle 0.7s var(--ease) forwards;
+    }
+
+    .js .hero-eyebrow { animation-delay: 0.05s; }
+    .js .hero-sub { animation-delay: 0.55s; }
+    .js .hero-metrics .metric:nth-child(1) { animation-delay: 0.80s; }
+    .js .hero-metrics .metric:nth-child(2) { animation-delay: 0.87s; }
+    .js .hero-metrics .metric:nth-child(3) { animation-delay: 0.94s; }
+    .js .hero-metrics .metric:nth-child(4) { animation-delay: 1.01s; }
+    .js .hero-metrics .metric:nth-child(5) { animation-delay: 1.08s; }
+    .js .hero-cta { animation-delay: 1.22s; }
+
+    @keyframes settle {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: none; }
+    }
+
+    /* brass rule draws in beneath each metric — no counting, no looping */
+    .metric { position: relative; padding-top: 0.55rem; }
+
+    .metric::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+    }
+
+    .js .metric::before { animation: rule-draw 0.6s var(--ease) forwards; }
+    .js .hero-metrics .metric:nth-child(1)::before { animation-delay: 0.86s; }
+    .js .hero-metrics .metric:nth-child(2)::before { animation-delay: 0.93s; }
+    .js .hero-metrics .metric:nth-child(3)::before { animation-delay: 1.00s; }
+    .js .hero-metrics .metric:nth-child(4)::before { animation-delay: 1.07s; }
+    .js .hero-metrics .metric:nth-child(5)::before { animation-delay: 1.14s; }
+
+    @keyframes rule-draw { to { transform: scaleX(1); } }
+
+    /* ---------- SYSTEMS EVOLUTION (pinned) ---------- */
+    .sysevo { position: relative; margin: 1.5rem 0 0; }
+
+    .sysevo-stage { position: relative; }
+
+    .sysevo-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
+      gap: 3rem;
+      align-items: center;
+      width: 100%;
+    }
+
+    .sx-left { display: grid; grid-template-columns: 56px 1fr; gap: 1.5rem; }
+
+    .sx-rail { list-style: none; margin: 0; padding: 0.4rem 0 0; }
+
+    .sx-rail li {
+      display: grid;
+      grid-template-rows: auto 1fr;
+      justify-items: center;
+      gap: 0.5rem;
+      min-height: 64px;
+    }
+
+    .sx-rail li:last-child { min-height: 0; }
+
+    .sx-rail-num {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      color: var(--warm-grey);
+      transition: color 0.45s var(--ease);
+    }
+
+    .sx-rail-line {
+      width: 1px;
+      min-height: 34px;
+      align-self: stretch;
+      background: rgba(185,138,74,0.18);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sx-rail-line::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gold);
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 0.6s var(--ease);
+    }
+
+    .sx-rail li.done .sx-rail-line::after,
+    .sx-rail li.active .sx-rail-line::after { transform: scaleY(1); }
+
+    .sx-rail li.active .sx-rail-num { color: var(--gold); }
+    .sx-rail li.done .sx-rail-num { color: var(--off-white); }
+    .sx-rail li.active[data-stage="2"] .sx-rail-num { color: var(--signal); }
+
+    .sx-panels { position: relative; min-height: 330px; }
+
+    .sx-panel {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
+    }
+
+    .sx-panel + .sx-panel { position: absolute; inset: 0; }
+
+    .sx-panel.active { opacity: 1; transform: none; }
+
+    .sx-num {
+      font-family: var(--display);
+      font-size: 3.4rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      color: rgba(185,138,74,0.28);
+      margin-bottom: 0.9rem;
+    }
+
+    .sx-panel[data-stage="2"] .sx-num { color: rgba(240,90,40,0.34); }
+
+    .sx-kicker {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .sx-panel[data-stage="2"] .sx-kicker { color: var(--signal); }
+
+    .sx-copy {
+      color: var(--warm-grey);
+      font-size: 1.1rem;
+      line-height: 1.85;
+      max-width: 42ch;
+    }
+
+    .sx-copy strong { color: var(--off-white); font-weight: 500; }
+
+    .sx-right { position: relative; }
+
+    .sx-svg {
+      width: 100%;
+      height: auto;
+      max-height: 60vh;
+      display: block;
+      margin-left: auto;
+      overflow: visible;
+    }
+
+    .sx-lattice line { stroke: rgba(185,138,74,0.05); stroke-width: 1; }
+
+    .sx-stage {
+      opacity: 0;
+      transition: opacity 0.5s var(--ease);
+      pointer-events: none;
+    }
+
+    .sx-stage.active { opacity: 1; }
+
+    .sx-hub {
+      fill: rgba(32,36,42,0.9);
+      stroke: var(--gold);
+      stroke-width: 1;
+    }
+
+    .sx-stage[data-stage="2"] .sx-hub { stroke: var(--signal); }
+
+    .sx-hubtext {
+      font-family: var(--mono);
+      font-size: 8.5px;
+      letter-spacing: 0.09em;
+      fill: var(--off-white);
+      text-anchor: middle;
+    }
+
+    .sx-edge {
+      stroke: rgba(185,138,74,0.45);
+      stroke-width: 1;
+      stroke-dasharray: 160;
+      stroke-dashoffset: 160;
+    }
+
+    .sx-stage[data-stage="2"] .sx-edge { stroke: rgba(240,90,40,0.5); }
+
+    .sx-stage.active .sx-edge {
+      transition: stroke-dashoffset 0.75s var(--ease);
+      transition-delay: calc(var(--i) * 90ms + 120ms);
+      stroke-dashoffset: 0;
+    }
+
+    .sx-node { fill: var(--gold); opacity: 0; }
+    .sx-stage[data-stage="2"] .sx-node { fill: var(--signal); }
+
+    .sx-stage.active .sx-node {
+      opacity: 1;
+      transition: opacity 0.4s var(--ease);
+      transition-delay: calc(var(--i) * 90ms + 480ms);
+    }
+
+    .sx-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      fill: var(--warm-grey);
+      opacity: 0;
+    }
+
+    .sx-stage.active .sx-label {
+      opacity: 1;
+      transition: opacity 0.4s var(--ease);
+      transition-delay: calc(var(--i) * 90ms + 540ms);
+    }
+
+    /* ---------- BLACKBOXX FLOW DIAGRAM ---------- */
+    .flowdiag { margin-top: 2.25rem; }
+
+    .flowdiag-cap {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--warm-grey);
+      margin-bottom: 1.25rem;
+    }
+
+    .flow-steps {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.75rem;
+    }
+
+    .flow-step {
+      position: relative;
+      padding: 1.1rem 1rem 1.1rem 0;
+      border-top: 1px solid rgba(240,90,40,0.28);
+    }
+
+    .flow-step::after {
+      content: '';
+      position: absolute;
+      top: -3.5px;
+      left: 0;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--signal);
+    }
+
+    .js .flow-step { opacity: 0; transform: translateY(10px); }
+
+    .js .flowdiag.in .flow-step {
+      opacity: 1;
+      transform: none;
+      transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
+      transition-delay: calc(var(--i) * 110ms);
+    }
+
+    .flow-num {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      color: var(--signal);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .flow-title {
+      font-family: var(--display);
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      color: var(--parchment);
+      margin-bottom: 0.35rem;
+    }
+
+    .flow-desc {
+      font-size: 0.82rem;
+      line-height: 1.6;
+      color: var(--warm-grey);
+    }
+
+    /* ---------- CAREER TIMELINE ---------- */
+    .career-list { position: relative; }
+
+    .career-list::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: rgba(185,138,74,0.14);
+    }
+
+    /* extends the rail through the gap so the corner reads as one path */
+    .career-list { padding-bottom: 2.5rem; }
+
+    /* ONE continuous stroke: vertical + corner + horizontal in a single
+       path, revealed by a normalized dashoffset driven by one scroll value.
+       There is no separate horizontal element that can fill ahead. */
+    .career-pathwrap { position: relative; }
+
+    .career-path {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .cp-line {
+      fill: none;
+      stroke: var(--gold);
+      stroke-width: 1;
+      vector-effect: non-scaling-stroke;
+      stroke-dasharray: 1 1;
+      stroke-dashoffset: 1;
+    }
+
+    /* the vertical rail turns right and streams across the section floor */
+    .career-outro {
+      position: relative;
+      height: 1px;
+      margin-top: 0;           /* .career-list padding-bottom owns the gap so
+                                  the rail meets the sweep at a clean corner */
+      background: rgba(185,138,74,0.14);
+    }
+
+    .career-item {
+      position: relative;
+      padding-left: 2rem;
+      transition: opacity 0.5s var(--ease);
+    }
+
+    .career-item::before {
+      content: '';
+      position: absolute;
+      left: -3px;
+      top: 3rem;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--graphite);
+      border: 1px solid rgba(185,138,74,0.45);
+      transition: background 0.4s var(--ease), border-color 0.4s var(--ease), transform 0.4s var(--ease);
+    }
+
+    .js .career-item { opacity: 0.42; }
+    .js .career-item.in { opacity: 1; }
+
+    .career-item.is-active::before {
+      background: var(--gold);
+      border-color: var(--gold);
+      transform: scale(1.25);
+    }
+
+    /* ---------- section label rules ---------- */
+    .section-eyebrow { position: relative; }
+
     /* RESPONSIVE */
     @media (max-width: 768px) {
       nav { padding: 1rem 1.5rem; }
@@ -1150,9 +1646,106 @@
     @media (prefers-reduced-motion: reduce) {
       * { transition: none !important; }
     }
+
+    /* ---------- MOBILE: pinned sequence becomes a stacked progression ---------- */
+    @media (max-width: 900px) {
+      .progress-rail { display: none; }
+
+      .sysevo { height: auto !important; margin: 2.5rem 0 0; }
+      .sysevo-stage { position: static !important; height: auto !important; }
+      .sysevo-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .sx-left { grid-template-columns: 1fr; gap: 0; }
+      .sx-rail { display: none; }
+      .sx-panels { min-height: 0; }
+
+      .sx-panel,
+      .sx-panel + .sx-panel {
+        position: relative;
+        inset: auto;
+        opacity: 1;
+        transform: none;
+        padding: 1.5rem 0 1.5rem 1.75rem;
+        border-left: 1px solid rgba(185,138,74,0.18);
+      }
+
+      .sx-panel::before {
+        content: '';
+        position: absolute;
+        left: -3.5px;
+        top: 1.9rem;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--gold);
+      }
+
+      .sx-panel[data-stage="2"]::before { background: var(--signal); }
+      .sx-num { font-size: 1.9rem; margin-bottom: 0.5rem; }
+      .sx-copy { max-width: none; }
+
+      .sx-stage { opacity: 1; position: static; }
+      .sx-stage .sx-edge { stroke-dashoffset: 0; }
+      .sx-stage .sx-node, .sx-stage .sx-label { opacity: 1; }
+      .sx-right { display: none; }
+
+      .flow-steps { grid-template-columns: 1fr; gap: 0; }
+      .flow-step { padding: 1rem 0 1rem 1.25rem; border-top: none; border-left: 1px solid rgba(240,90,40,0.28); }
+      .flow-step::after { top: 1.35rem; left: -3.5px; }
+
+      .career-item { padding-left: 1.5rem; }
+      .career-item::before { top: 2.75rem; }
+    }
+
+    /* ---------- REDUCED MOTION: everything static and readable ---------- */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto !important; }
+
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      .js .reveal,
+      .js .hero-eyebrow,
+      .js .hero-sub,
+      .js .hero-cta,
+      .js .hero-metrics .metric,
+      .js .flow-step,
+      .js .career-item {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+
+      .js .hero-headline .hl > span { transform: none !important; }
+      .js .hero-headline em { color: var(--gold) !important; }
+      .metric::before { transform: scaleX(1) !important; }
+      .hero-grid { transform: none !important; }
+      .progress-rail { display: none; }
+
+      /* the pinned sequence unpins and reads as three stacked stages */
+      .sysevo { height: auto !important; }
+      .sysevo-stage { position: static !important; height: auto !important; }
+      .sysevo-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .sx-left { grid-template-columns: 1fr; }
+      .sx-rail { display: none; }
+      .sx-panels { min-height: 0; }
+      .sx-panel, .sx-panel + .sx-panel {
+        position: relative !important;
+        inset: auto !important;
+        opacity: 1 !important;
+        transform: none !important;
+        padding: 1.25rem 0 1.25rem 1.75rem;
+        border-left: 1px solid rgba(185,138,74,0.18);
+      }
+      .sx-right { display: none; }
+      .cp-line { stroke-dashoffset: 0 !important; }
+    }
+
   </style>
 </head>
 <body>
+
+  <div class="progress-rail" aria-hidden="true"><span></span></div>
 
   <!-- NAV -->
   <nav aria-label="Primary">
@@ -1178,8 +1771,9 @@
 
   <!-- HERO -->
   <section class="hero">
+    <div class="hero-grid" aria-hidden="true"></div>
     <p class="hero-eyebrow">CFO · Fractional CEO/CFO · Founder-Operator · Greater Seattle Area</p>
-    <h1 class="hero-headline">I build businesses,<br>financial systems,<br>and <em>what comes next.</em></h1>
+    <h1 class="hero-headline"><span class="hl"><span>I build businesses,</span></span><span class="hl"><span>financial systems,</span></span><span class="hl"><span>and <em>what comes next.</em></span></span></h1>
     <p class="hero-sub">25+ years building, scaling, financing, and turning around companies. Scaled from startup to $30M+ ARR and more than $200M in cumulative revenue, with a career-long focus on finance, operations, technology, and systems.</p>
     <div class="hero-metrics">
       <div class="metric">
@@ -1230,11 +1824,20 @@
   <!-- TECHNOLOGY & AI -->
   <section class="tech" id="technology">
     <div class="tech-inner">
-      <p class="section-eyebrow">Technology & AI</p>
-      <h2 class="section-title">Technology has always been part of how I operate.</h2>
-      <p class="tech-body">At <strong>Nike World Headquarters</strong>, I was designated a Corporate Information Technology “Super User,” working between developers, business teams, retail operations, employees, and customers during new-system implementations. I built and led Nike Retail Special Orders and helped develop its early internet-based purchasing capability during Nike's transition toward retail e-commerce.</p>
-      <p class="tech-body">Later, as a founder and CEO/CFO, I directly led strategy, innovation, technology implementation, and business systems while scaling operating companies.</p>
-      <p class="tech-body">Today, that work extends into AI systems, agentic workflows, automation, technology strategy, and integrating AI into finance, operations, research, and executive decision-making.</p>
+      <p class="section-eyebrow reveal">Technology & AI</p>
+      <h2 class="section-title reveal">Technology has always been part of how I operate.</h2>
+
+      <div class="sysevo" id="sysevo">
+        <div class="sysevo-stage">
+          <div class="sysevo-inner">
+            <div class="sx-left">
+              <ol class="sx-rail"><li data-stage="0"><span class="sx-rail-num">01</span><span class="sx-rail-line" aria-hidden="true"></span></li><li data-stage="1"><span class="sx-rail-num">02</span><span class="sx-rail-line" aria-hidden="true"></span></li><li data-stage="2"><span class="sx-rail-num">03</span><span class="sx-rail-line" aria-hidden="true"></span></li></ol>
+              <div class="sx-panels"><article class="sx-panel" data-stage="0"><p class="sx-num">01</p><p class="sx-kicker">Nike · Business ↔ Technology</p><p class="sx-copy">At <strong>Nike World Headquarters</strong>, I was designated a Corporate Information Technology &ldquo;Super User,&rdquo; working between developers, business teams, retail operations, employees, and customers during new-system implementations. I built and led Nike Retail Special Orders and helped develop its early internet-based purchasing capability during Nike's transition toward retail e-commerce.</p></article><article class="sx-panel" data-stage="1"><p class="sx-num">02</p><p class="sx-kicker">Founder-Operator · Systems as Operating Leverage</p><p class="sx-copy">Later, as a founder and CEO/CFO, I directly led strategy, innovation, technology implementation, and business systems while scaling operating companies.</p></article><article class="sx-panel" data-stage="2"><p class="sx-num">03</p><p class="sx-kicker">BlackBoxx.ai · AI Systems and Automation</p><p class="sx-copy">Today, that work extends into AI systems, agentic workflows, automation, technology strategy, and integrating AI into finance, operations, research, and executive decision-making.</p></article></div>
+            </div>
+            <div class="sx-right"><svg class="sx-svg" viewBox="55 25 510 370" role="img" aria-label="Diagram of Karl's systems work evolving from business-technology translation to operating systems to AI orchestration." xmlns="http://www.w3.org/2000/svg"><g class="sx-lattice" aria-hidden="true"><line x1="40" y1="0" x2="40" y2="420"/><line x1="100" y1="0" x2="100" y2="420"/><line x1="160" y1="0" x2="160" y2="420"/><line x1="220" y1="0" x2="220" y2="420"/><line x1="280" y1="0" x2="280" y2="420"/><line x1="340" y1="0" x2="340" y2="420"/><line x1="400" y1="0" x2="400" y2="420"/><line x1="460" y1="0" x2="460" y2="420"/><line x1="520" y1="0" x2="520" y2="420"/><line x1="580" y1="0" x2="580" y2="420"/><line x1="640" y1="0" x2="640" y2="420"/><line x1="0" y1="30" x2="640" y2="30"/><line x1="0" y1="90" x2="640" y2="90"/><line x1="0" y1="150" x2="640" y2="150"/><line x1="0" y1="210" x2="640" y2="210"/><line x1="0" y1="270" x2="640" y2="270"/><line x1="0" y1="330" x2="640" y2="330"/><line x1="0" y1="390" x2="640" y2="390"/></g><g class="sx-stage" data-stage="0" aria-hidden="true"><line class="sx-edge" x1="320.0" y1="210.0" x2="320.0" y2="60.0" style="--i:0"/><line class="sx-edge" x1="320.0" y1="210.0" x2="462.7" y2="163.6" style="--i:1"/><line class="sx-edge" x1="320.0" y1="210.0" x2="408.2" y2="331.4" style="--i:2"/><line class="sx-edge" x1="320.0" y1="210.0" x2="231.8" y2="331.4" style="--i:3"/><line class="sx-edge" x1="320.0" y1="210.0" x2="177.3" y2="163.6" style="--i:4"/><circle class="sx-hub" cx="320.0" cy="210.0" r="42"/><text class="sx-hubtext" x="320.0" y="207.5">NIKE RETAIL</text><text class="sx-hubtext" x="320.0" y="220.5">SPECIAL ORDERS</text><circle class="sx-node" cx="320.0" cy="60.0" r="6" style="--i:0"/><text class="sx-label" x="320.0" y="42.0" text-anchor="middle" style="--i:0">IT</text><circle class="sx-node" cx="462.7" cy="163.6" r="6" style="--i:1"/><text class="sx-label" x="476.7" y="167.6" text-anchor="start" style="--i:1">Business Leadership</text><circle class="sx-node" cx="408.2" cy="331.4" r="6" style="--i:2"/><text class="sx-label" x="422.2" y="335.4" text-anchor="start" style="--i:2">Retail Operations</text><circle class="sx-node" cx="231.8" cy="331.4" r="6" style="--i:3"/><text class="sx-label" x="217.8" y="335.4" text-anchor="end" style="--i:3">Employees</text><circle class="sx-node" cx="177.3" cy="163.6" r="6" style="--i:4"/><text class="sx-label" x="163.3" y="167.6" text-anchor="end" style="--i:4">Consumers</text></g><g class="sx-stage" data-stage="1" aria-hidden="true"><line class="sx-edge" x1="320.0" y1="210.0" x2="320.0" y2="60.0" style="--i:0"/><line class="sx-edge" x1="320.0" y1="210.0" x2="462.7" y2="163.6" style="--i:1"/><line class="sx-edge" x1="320.0" y1="210.0" x2="408.2" y2="331.4" style="--i:2"/><line class="sx-edge" x1="320.0" y1="210.0" x2="231.8" y2="331.4" style="--i:3"/><line class="sx-edge" x1="320.0" y1="210.0" x2="177.3" y2="163.6" style="--i:4"/><circle class="sx-hub" cx="320.0" cy="210.0" r="42"/><text class="sx-hubtext" x="320.0" y="207.5">OPERATING</text><text class="sx-hubtext" x="320.0" y="220.5">COMPANY</text><circle class="sx-node" cx="320.0" cy="60.0" r="6" style="--i:0"/><text class="sx-label" x="320.0" y="42.0" text-anchor="middle" style="--i:0">Finance Systems</text><circle class="sx-node" cx="462.7" cy="163.6" r="6" style="--i:1"/><text class="sx-label" x="476.7" y="167.6" text-anchor="start" style="--i:1">Reporting</text><circle class="sx-node" cx="408.2" cy="331.4" r="6" style="--i:2"/><text class="sx-label" x="422.2" y="335.4" text-anchor="start" style="--i:2">Workflows</text><circle class="sx-node" cx="231.8" cy="331.4" r="6" style="--i:3"/><text class="sx-label" x="217.8" y="335.4" text-anchor="end" style="--i:3">Capital</text><circle class="sx-node" cx="177.3" cy="163.6" r="6" style="--i:4"/><text class="sx-label" x="163.3" y="167.6" text-anchor="end" style="--i:4">Technology</text></g><g class="sx-stage" data-stage="2" aria-hidden="true"><line class="sx-edge" x1="320.0" y1="210.0" x2="320.0" y2="60.0" style="--i:0"/><line class="sx-edge" x1="320.0" y1="210.0" x2="462.7" y2="163.6" style="--i:1"/><line class="sx-edge" x1="320.0" y1="210.0" x2="408.2" y2="331.4" style="--i:2"/><line class="sx-edge" x1="320.0" y1="210.0" x2="231.8" y2="331.4" style="--i:3"/><line class="sx-edge" x1="320.0" y1="210.0" x2="177.3" y2="163.6" style="--i:4"/><circle class="sx-hub" cx="320.0" cy="210.0" r="42"/><text class="sx-hubtext" x="320.0" y="207.5">AGENT</text><text class="sx-hubtext" x="320.0" y="220.5">ORCHESTRATION</text><circle class="sx-node" cx="320.0" cy="60.0" r="6" style="--i:0"/><text class="sx-label" x="320.0" y="42.0" text-anchor="middle" style="--i:0">Specialized Agents</text><circle class="sx-node" cx="462.7" cy="163.6" r="6" style="--i:1"/><text class="sx-label" x="476.7" y="167.6" text-anchor="start" style="--i:1">Automation</text><circle class="sx-node" cx="408.2" cy="331.4" r="6" style="--i:2"/><text class="sx-label" x="422.2" y="335.4" text-anchor="start" style="--i:2">Integration</text><circle class="sx-node" cx="231.8" cy="331.4" r="6" style="--i:3"/><text class="sx-label" x="217.8" y="335.4" text-anchor="end" style="--i:3">Validation</text><circle class="sx-node" cx="177.3" cy="163.6" r="6" style="--i:4"/><text class="sx-label" x="163.3" y="167.6" text-anchor="end" style="--i:4">Decision Support</text></g></svg></div>
+          </div>
+        </div>
+      </div>
 
       <div class="tech-grid">
         <div class="tech-card">
@@ -1261,6 +1864,7 @@
         <p class="blackboxx-role">Principal | AI Systems and Automation Architect</p>
         <p class="blackboxx-desc">BlackBoxx.ai is an independent AI Systems Lab focused on building and pressure-testing practical agentic systems, automation, orchestration, and AI integration across real-world business workflows.</p>
         <p class="blackboxx-desc">I design and test multi-agent systems, agent specialization, AI/tool integration, workflow automation, and AI-enabled operating systems — applying emerging capabilities to finance, research, executive decision support, operations, and business-process automation.</p>
+        <div class="flowdiag"><p class="flowdiag-cap">Conceptual architecture · how an agentic workflow is structured and pressure-tested</p><ol class="flow-steps"><li class="flow-step" style="--i:0"><span class="flow-num">01</span><p class="flow-title">Business Inputs</p><p class="flow-desc">Finance, operations, and research inputs entering a defined workflow.</p></li><li class="flow-step" style="--i:1"><span class="flow-num">02</span><p class="flow-title">Specialized Agents</p><p class="flow-desc">Task-scoped agents with defined tools and responsibilities.</p></li><li class="flow-step" style="--i:2"><span class="flow-num">03</span><p class="flow-title">Validation &amp; Exceptions</p><p class="flow-desc">Checks and tolerances, with judgment routed to a human.</p></li><li class="flow-step" style="--i:3"><span class="flow-num">04</span><p class="flow-title">Executive Decision</p><p class="flow-desc">Reporting and decision support delivered to the operator.</p></li></ol></div>
         <a href="https://blackboxx.ai" class="btn-secondary btn-signal" style="margin-top:1.5rem;" target="_blank" rel="noopener">Explore BlackBoxx.ai →</a>
       </div>
     </div>
@@ -1268,9 +1872,11 @@
 
   <!-- CAREER -->
   <section class="career" id="career">
-    <p class="section-eyebrow">Career</p>
-    <h2 class="section-title">25+ Years of Building</h2>
+    <p class="section-eyebrow reveal">Career</p>
+    <h2 class="section-title reveal">25+ Years of Building</h2>
 
+    <div class="career-pathwrap">
+    <div class="career-list">
     <div class="career-item">
       <div class="career-meta">
         <p class="career-dates">MAR 2026 — PRESENT</p>
@@ -1372,13 +1978,17 @@
         <p>Helped develop Nike Retail Special Orders' early internet-based purchasing capability — an early operational foundation in Nike's transition toward retail e-commerce — and was designated a rare Corporate IT “Super User,” working between IT, business leadership, developers, retail operations, employees, and consumers during new-system implementations.</p>
       </div>
     </div>
+    </div>
+    <div class="career-outro" aria-hidden="true"></div>
+    <svg class="career-path" aria-hidden="true" preserveAspectRatio="none"><path class="cp-line" pathLength="1"/></svg>
+    </div>
   </section>
 
   <!-- KSIG CTA -->
   <section class="ksig-cta" id="ksig">
     <div class="ksig-cta-inner">
       <div>
-        <p class="section-eyebrow">KSIG Advisors</p>
+        <p class="section-eyebrow reveal">KSIG Advisors</p>
         <h2>Fractional executive leadership<br><em>when the situation demands experience.</em></h2>
         <div class="gold-rule"></div>
         <p>KSIG Advisors is my independent fractional CEO/CFO and strategic finance practice, serving founder-led, PE-backed, and growth-stage businesses navigating growth, turnaround, capital needs, financial transformation, and ownership transition.</p>
@@ -1406,8 +2016,8 @@
 
   <!-- CREDENTIALS -->
   <section class="credentials" id="credentials">
-    <p class="section-eyebrow">Credentials & Recognition</p>
-    <h2 class="section-title">Affiliations</h2>
+    <p class="section-eyebrow reveal">Credentials & Recognition</p>
+    <h2 class="section-title reveal">Affiliations</h2>
     <div class="cred-grid">
       <div class="cred-item">
         <p class="cred-org">MIT Sloan</p>
@@ -1463,8 +2073,8 @@
   <!-- VENTURES -->
   <section class="ventures">
     <div class="ventures-inner">
-      <p class="section-eyebrow">Community</p>
-      <h2 class="section-title">Beyond the Work</h2>
+      <p class="section-eyebrow reveal">Community</p>
+      <h2 class="section-title reveal">Beyond the Work</h2>
       <div class="venture-grid venture-grid--single">
         <div class="venture-item">
           <p class="venture-name">WeHeartCleElumRoslyn, SPC</p>
@@ -1476,8 +2086,8 @@
 
   <!-- EDUCATION -->
   <section class="education">
-    <p class="section-eyebrow">Education</p>
-    <h2 class="section-title">Academic Foundation</h2>
+    <p class="section-eyebrow reveal">Education</p>
+    <h2 class="section-title reveal">Academic Foundation</h2>
     <div class="edu-grid">
       <div class="edu-item">
         <p class="edu-institution">MIT Sloan Executive Education</p>
@@ -1579,6 +2189,240 @@
       window.addEventListener('resize', function () {
         if (window.innerWidth > 768 && !panel.hidden) setOpen(false);
       });
+    })();
+  </script>
+
+
+  <script>
+    /* Motion controller — one rAF-throttled scroll pass, Intersection Observers
+       for everything else. No library. Degrades to static content when this
+       script never runs, and self-disables under prefers-reduced-motion. */
+    (function () {
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var mqPinned = window.matchMedia('(min-width: 901px)');
+
+      /* ---- one-shot reveals ---- */
+      if (!('IntersectionObserver' in window)) {
+        /* No observer support: show everything immediately. */
+        Array.prototype.forEach.call(
+          document.querySelectorAll('.reveal, .flowdiag, .career-item'),
+          function (el) { el.classList.add('in'); });
+      }
+
+      if ('IntersectionObserver' in window) {
+        var revealables = document.querySelectorAll('.reveal, .flowdiag, .career-item');
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+          });
+        }, { rootMargin: '0px 0px -12% 0px', threshold: 0.15 });
+        Array.prototype.forEach.call(revealables, function (el) { io.observe(el); });
+
+        /* staggered card entrances */
+        ['.tech-grid .tech-card', '.cred-grid .cred-item', '.edu-grid .edu-item', '.ksig-lanes .lane']
+          .forEach(function (sel) {
+            Array.prototype.forEach.call(document.querySelectorAll(sel), function (el, i) {
+              el.classList.add('reveal');
+              el.style.setProperty('--d', i);
+              io.observe(el);
+            });
+          });
+
+        /* nav active section */
+        var navLinks = {};
+        Array.prototype.forEach.call(document.querySelectorAll('.nav-links a[href^="#"]'), function (a) {
+          navLinks[a.getAttribute('href').slice(1)] = a;
+        });
+        var secs = Object.keys(navLinks).map(function (id) { return document.getElementById(id); }).filter(Boolean);
+        if (secs.length) {
+          var navIO = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+              var a = navLinks[e.target.id];
+              if (!a) return;
+              if (e.isIntersecting) {
+                Object.keys(navLinks).forEach(function (k) { navLinks[k].classList.remove('is-active'); });
+                a.classList.add('is-active');
+              }
+            });
+          }, { rootMargin: '-45% 0px -50% 0px' });
+          secs.forEach(function (sec) { navIO.observe(sec); });
+        }
+
+        /* active career entry */
+        var items = document.querySelectorAll('.career-item');
+        if (items.length) {
+          var carIO = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+              e.target.classList.toggle('is-active', e.isIntersecting);
+            });
+          }, { rootMargin: '-42% 0px -42% 0px' });
+          Array.prototype.forEach.call(items, function (el) { carIO.observe(el); });
+        }
+      }
+
+      if (reduce) return;
+
+      /* ---- pinned systems-evolution sequence ---- */
+      var sys = document.getElementById('sysevo');
+      var panels = sys ? sys.querySelectorAll('.sx-panel') : [];
+      var stages = sys ? sys.querySelectorAll('.sx-stage') : [];
+      var railItems = sys ? sys.querySelectorAll('.sx-rail li') : [];
+      var STAGES = panels.length;
+      /* Progress map. Each threshold is the START of a transition, so the
+         crossfade and diagram draw run inside the transition band and the
+         stage then holds visually stable until the next one:
+           stage 1 stable 0.00-0.22 | transition 0.22-0.30
+           stage 2 stable 0.30-0.58 | transition 0.58-0.66
+           stage 3 stable 0.66-0.94 | release   0.94-1.00
+         Stage 1 gets the smallest internal share because it already gains
+         exposure while the sticky stage enters and settles. */
+      var T2 = 0.22;   /* stage 2 transition begins */
+      var T3 = 0.58;   /* stage 3 transition begins */
+      var current = -1;
+
+      function setStage(i) {
+        if (i === current) return;
+        current = i;
+        for (var n = 0; n < STAGES; n++) {
+          panels[n].classList.toggle('active', n === i);
+          if (stages[n]) stages[n].classList.toggle('active', n === i);
+          if (railItems[n]) {
+            railItems[n].classList.toggle('active', n === i);
+            railItems[n].classList.toggle('done', n < i);
+          }
+        }
+      }
+
+      function applyPinned(on) {
+        if (!sys) return;
+        if (on) {
+          sys.style.height = '350vh';
+          var st = sys.firstElementChild;
+          st.style.position = 'sticky';
+          st.style.top = NAV + 'px';
+          st.style.height = 'calc(100vh - ' + NAV + 'px)';
+          st.style.display = 'flex';
+          st.style.alignItems = 'center';
+          setStage(0);
+        } else {
+          sys.style.height = '';
+          var s2 = sys.firstElementChild;
+          s2.style.position = s2.style.top = s2.style.height = s2.style.display = s2.style.alignItems = '';
+          current = -1;
+          for (var n = 0; n < STAGES; n++) {
+            panels[n].classList.remove('active');
+            if (stages[n]) stages[n].classList.remove('active');
+          }
+        }
+      }
+
+      var navEl = document.querySelector('nav');
+      var NAV = navEl ? Math.round(navEl.getBoundingClientRect().height) : 64;
+
+      var pinned = mqPinned.matches;
+      applyPinned(pinned);
+
+      /* ---- single scroll pass ---- */
+      var hero = document.querySelector('.hero');
+      var heroGrid = document.querySelector('.hero-grid');
+      var rail = document.querySelector('.progress-rail span');
+      var careerList = document.querySelector('.career-list');
+      var outro = document.querySelector('.career-outro');
+      var wrap = document.querySelector('.career-pathwrap');
+      var cpSvg = document.querySelector('.career-path');
+      var cpLine = document.querySelector('.cp-line');
+      var geo = null;          /* measured path geometry, recomputed on resize */
+      var ticking = false;
+
+      /* Build the real path after layout and measure where the bend falls. */
+      function measurePath() {
+        if (!wrap || !cpLine || !outro) return;
+        var W = wrap.clientWidth;
+        var H = wrap.clientHeight;
+        var yb = Math.round(outro.offsetTop);   /* y of the horizontal track */
+        var R = 10;                             /* small controlled bend */
+        var d = 'M0.5 0 V' + (yb - R) +
+                ' Q0.5 ' + yb + ' ' + (0.5 + R) + ' ' + yb +
+                ' H' + (W - 0.5);
+        cpSvg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+        cpLine.setAttribute('d', d);
+        var total = cpLine.getTotalLength();
+        var horiz = (W - 0.5) - (0.5 + R);
+        geo = {
+          yb: yb, R: R, total: total,
+          lenVert: yb - R,
+          lenCornerEnd: total - horiz,
+          horiz: horiz
+        };
+      }
+      measurePath();
+
+      function frame() {
+        ticking = false;
+        var vh = window.innerHeight;
+        var y = window.pageYOffset;
+
+        if (rail) {
+          var max = document.documentElement.scrollHeight - vh;
+          rail.style.setProperty('--p', max > 0 ? Math.min(1, y / max) : 0);
+        }
+
+        if (heroGrid && hero && y < hero.offsetHeight + 200) {
+          heroGrid.style.setProperty('--sy', (y * 0.12).toFixed(1) + 'px');
+        }
+
+        if (pinned && sys) {
+          var r = sys.getBoundingClientRect();
+          var stageH = sys.firstElementChild.offsetHeight || (vh - NAV);
+          var span = r.height - stageH;
+          if (span > 0) {
+            var p = (-r.top) / span;
+            p = p < 0 ? 0 : p > 1 ? 1 : p;
+            /* Uneven dwell: stage 2 needs longer to register before the
+               signal-orange state takes over. Thresholds are entry points. */
+            var idx = p >= T3 ? 2 : (p >= T2 ? 1 : 0);
+            setStage(idx);
+          }
+        }
+
+        /* ---- career path: one leading edge, one dashoffset ----
+           The edge sits exactly on the reading line while it descends, passes
+           through the bend, then continues along the horizontal segment. */
+        if (geo && wrap && cpLine) {
+          var wr = wrap.getBoundingClientRect();
+          var edgeY = (vh * 0.62) - wr.top;        /* reading line, wrap-local */
+          var L;
+          if (edgeY <= 0) {
+            L = 0;
+          } else if (edgeY <= geo.lenVert) {
+            L = edgeY;                              /* straight descent */
+          } else if (edgeY <= geo.yb) {
+            var t = (edgeY - geo.lenVert) / geo.R;  /* through the bend */
+            L = geo.lenVert + t * (geo.lenCornerEnd - geo.lenVert);
+          } else {
+            var sweep = vh * 0.55;                  /* scroll for the run-out */
+            var t2 = (edgeY - geo.yb) / sweep;
+            if (t2 > 1) t2 = 1;
+            L = geo.lenCornerEnd + t2 * geo.horiz;
+          }
+          var frac = L / geo.total;
+          if (frac < 0) frac = 0; else if (frac > 1) frac = 1;
+          cpLine.style.strokeDashoffset = (1 - frac).toFixed(4);
+        }
+      }
+
+      function onScroll() {
+        if (!ticking) { ticking = true; requestAnimationFrame(frame); }
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', function () {
+        measurePath();
+        var next = mqPinned.matches;
+        if (next !== pinned) { pinned = next; applyPinned(pinned); }
+        onScroll();
+      }, { passive: true });
+      frame();
     })();
   </script>
 
