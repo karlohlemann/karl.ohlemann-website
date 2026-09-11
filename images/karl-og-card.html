@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Karl Ohlemann — Open Graph Card (1200×630)</title>
+<!--
+  ============================================================
+  RENDER TEMPLATE — NOT A PAGE ON THE SITE
+  Export target: images/karl-ohlemann-og.png  (exactly 1200 × 630)
+
+  HOW TO EXPORT
+  1. Open this file in Chrome. Wait for the "Fonts loaded" badge
+     below the card to turn green — do not export before then,
+     or the card renders in a fallback typeface.
+  2. Right-click the card → Inspect.
+  3. In the Elements panel, right-click <div id="card"> →
+     "Capture node screenshot".
+  4. On a Retina Mac the PNG saves at 2400 × 1260. KEEP IT AT THAT
+     SIZE — do not downscale. LinkedIn renders the card far wider
+     than 1200px on desktop, so the 2x file is what keeps the
+     small monospace type crisp. index.html declares 2400 × 1260.
+
+  If your display is NOT Retina, the capture lands at 1200 × 630.
+  To force 2x: DevTools → Device Toolbar (⌘⇧M) → "Responsive" →
+  1200 × 630 → set DPR to 2 → ⋮ menu → "Capture screenshot".
+
+  Verify the saved file is 2400 × 1260 before committing.
+  ============================================================
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  /* Tokens copied from karlohlemann.com (industrial palette) — keep in sync */
+  :root {
+    --black: #090A0C;                        /* obsidian */
+    --parchment: #F2EEE7;                    /* warm white */
+    --off-white: #DFDAD2;
+    --gold: #B98A4A;                         /* burnished brass */
+    --warm-grey: #9A9DA3;                    /* titanium grey */
+    --signal: #F05A28;                       /* signal orange */
+    --signal-faint: rgba(240,90,40,0.04);
+    --red-bright: #BE3630;                   /* deep red */
+    --display: 'Manrope', system-ui, sans-serif;
+    --mono: 'Space Mono', monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #3A3A3A;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 40px 20px;
+    font-family: var(--display);
+  }
+
+  /* ---------- THE CARD — exactly 1200 × 630 ---------- */
+  #card {
+    width: 1200px;
+    height: 630px;
+    flex: none;
+    position: relative;
+    overflow: hidden;
+    background: var(--black);
+    padding: 60px;              /* safe area */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* Fine systems grid — same motif as the Technology & AI section */
+  #card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--signal-faint) 1px, transparent 1px),
+      linear-gradient(90deg, var(--signal-faint) 1px, transparent 1px);
+    background-size: 60px 60px;
+    -webkit-mask-image: linear-gradient(160deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.35) 55%, rgba(0,0,0,0) 90%);
+    mask-image: linear-gradient(160deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.35) 55%, rgba(0,0,0,0) 90%);
+    pointer-events: none;
+  }
+
+  .inner { position: relative; z-index: 1; }
+
+  .name {
+    font-family: var(--display);
+    font-size: 104px;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: var(--parchment);
+    margin-bottom: 30px;
+  }
+
+  .line-exec {
+    font-family: var(--mono);
+    font-size: 29px;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--gold);
+    line-height: 1.35;
+    margin-bottom: 10px;
+  }
+
+  .line-tech {
+    font-family: var(--mono);
+    font-size: 29px;
+    font-weight: 400;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--signal);
+    line-height: 1.35;
+  }
+
+  .rule {
+    width: 72px;
+    height: 2px;
+    background: var(--gold);
+    margin: 44px 0;
+  }
+
+  .metrics {
+    display: flex;
+    align-items: flex-start;
+    gap: 64px;
+  }
+
+  .metric-divider {
+    width: 1px;
+    align-self: stretch;
+    background: rgba(196,168,130,0.28);
+  }
+
+  .metric-value {
+    font-family: var(--display);
+    font-size: 62px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: var(--gold);
+    white-space: nowrap;
+    margin-bottom: 14px;
+  }
+
+  .metric-loss { color: var(--red-bright); }
+
+  .metric-label {
+    font-family: var(--mono);
+    font-size: 25px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--warm-grey);
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  /* ---------- screen-only helper, never part of the export ---------- */
+  .note {
+    width: 1200px;
+    max-width: 100%;
+    font-family: var(--mono);
+    font-size: 13px;
+    line-height: 1.7;
+    color: #E8E3D8;
+    background: #1c1c1c;
+    border: 1px solid #444;
+    padding: 16px 20px;
+  }
+  .note b { color: #C4A882; font-weight: 700; }
+  #fontState {
+    display: inline-block;
+    padding: 2px 10px;
+    border: 1px solid #666;
+    color: #bbb;
+  }
+  #fontState.ready { border-color: #6B8F71; color: #8FBF96; }
+  .safe-toggle { cursor: pointer; color: #7FA8C6; text-decoration: underline; }
+  /* Optional safe-area overlay for visual checking; off by default */
+  #card.show-safe::after {
+    content: '';
+    position: absolute;
+    inset: 60px;
+    border: 1px dashed rgba(127,168,198,0.55);
+    pointer-events: none;
+    z-index: 2;
+  }
+</style>
+</head>
+<body>
+
+  <div id="card">
+    <div class="inner">
+      <div class="name">Karl Ohlemann</div>
+      <div class="line-exec">CFO · Fractional CEO/CFO · Founder-Operator</div>
+      <div class="line-tech">AI Systems &amp; Technology Strategy</div>
+
+      <div class="rule"></div>
+
+      <div class="metrics">
+        <div class="metric">
+          <div class="metric-value">$0→$30M</div>
+          <div class="metric-label">ARR</div>
+        </div>
+        <div class="metric-divider"></div>
+        <div class="metric">
+          <div class="metric-value"><span class="metric-loss">$242K</span>→$2.34M</div>
+          <div class="metric-label">Loss to Profit</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="note">
+    Font status: <span id="fontState">loading…</span> &nbsp;·&nbsp;
+    Card size: <span id="cardSize">—</span> &nbsp;·&nbsp;
+    <span class="safe-toggle" id="safeToggle">toggle safe-area guide</span><br>
+    Export <b>#card</b> at <b>2400 × 1260</b> (2x, no downscale) → commit as <b>images/karl-ohlemann-og.png</b>.
+    Do not export until font status reads <b>ready</b>. Full instructions are in the HTML comment at the top of this file.
+  </div>
+
+<script>
+  (function () {
+    var card = document.getElementById('card');
+    document.getElementById('cardSize').textContent =
+      card.offsetWidth + ' × ' + card.offsetHeight;
+
+    document.getElementById('safeToggle').addEventListener('click', function () {
+      card.classList.toggle('show-safe');
+    });
+
+    var state = document.getElementById('fontState');
+    if (document.fonts && document.fonts.ready) {
+      Promise.all([
+        document.fonts.load('800 104px Manrope'),
+        document.fonts.load('700 26px "Space Mono"'),
+        document.fonts.load('400 22px "Space Mono"')
+      ]).then(function () {
+        return document.fonts.ready;
+      }).then(function () {
+        state.textContent = 'ready';
+        state.className = 'ready';
+      });
+    } else {
+      state.textContent = 'unknown — check visually';
+    }
+  })();
+</script>
+
+</body>
+</html>
