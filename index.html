@@ -849,8 +849,12 @@
 
     .footer-links {
       display: flex;
-      gap: 1.5rem;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.85rem 1.5rem;   /* row gap keeps tap targets apart when wrapped */
     }
+
+    .footer-long { white-space: nowrap; }
 
     .footer-links a {
       font-family: var(--mono);
@@ -927,7 +931,7 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1.5rem;
-      margin-top: 1.75rem;
+      margin-top: 3.5rem;   /* normal section spacing after the sequence */
       position: relative;
     }
 
@@ -1289,29 +1293,71 @@
     @keyframes rule-draw { to { transform: scaleX(1); } }
 
     /* ---------- SYSTEMS EVOLUTION (pinned) ---------- */
-    .sysevo { position: relative; margin: 1.5rem 0 0; }
+    .sysevo { position: relative; margin: 0; }
 
     .sysevo-stage { position: relative; }
 
+    /* Compact header row + tall main row. The main row is 1fr so the
+       composition grows with the stage instead of floating centered. */
     .sysevo-inner {
       display: grid;
-      grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
-      gap: 3rem;
-      align-items: center;
-      width: 100%;
+      grid-template-rows: auto auto;   /* content-sized: the stage is as tall
+                                          as the composition, nothing more */
+      row-gap: clamp(1.5rem, 3vh, 3.5rem);
+      width: 100%;   /* never exceeds .tech-inner's 1100px container */
+      margin-inline: auto;
+      padding-block: 0;
+      height: auto;
+      box-sizing: border-box;
     }
 
-    .sx-left { display: grid; grid-template-columns: 56px 1fr; gap: 1.5rem; }
+    .sx-head { margin: 0; }
 
-    .sx-rail { list-style: none; margin: 0; padding: 0.4rem 0 0; }
+    .sx-head .section-eyebrow { margin-bottom: 0.9rem; }
+
+    .sx-head .section-title {
+      margin-bottom: 0;
+      padding-bottom: clamp(0.9rem, 1.6vh, 1.6rem);
+      font-size: clamp(1.5rem, 2.4vh, 2.3rem);
+    }
+
+    .sx-main {
+      display: grid;
+      grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
+      gap: clamp(2rem, 3.2vw, 3.75rem);
+      align-items: stretch;   /* rail matches the diagram column's height */
+      min-height: 0;
+    }
+
+    .sx-left {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      grid-template-rows: minmax(0, 1fr);   /* fills the main row so the rail
+                                               reaches the bottom of the stage */
+      gap: 1.5rem;
+      min-height: 0;
+    }
+
+    .sx-panels { align-self: start; }
+
+    .sx-rail {
+      list-style: none;
+      margin: 0;
+      padding: 0.4rem 0 0;
+      display: grid;
+      grid-template-rows: 1fr 1fr auto;
+      height: 100%;
+    }
 
     .sx-rail li {
       display: grid;
       grid-template-rows: auto 1fr;
       justify-items: center;
       gap: 0.5rem;
-      min-height: 64px;
+      min-height: clamp(58px, 7.5vh, 120px);
     }
+
+    .sx-rail li:last-child { align-self: start; }
 
     .sx-rail li:last-child { min-height: 0; }
 
@@ -1349,7 +1395,7 @@
     .sx-rail li.done .sx-rail-num { color: var(--off-white); }
     .sx-rail li.active[data-stage="2"] .sx-rail-num { color: var(--signal); }
 
-    .sx-panels { position: relative; min-height: 330px; }
+    .sx-panels { position: relative; min-height: clamp(260px, 26vh, 420px); }
 
     .sx-panel {
       opacity: 0;
@@ -1363,7 +1409,7 @@
 
     .sx-num {
       font-family: var(--display);
-      font-size: 3.4rem;
+      font-size: clamp(2.8rem, 3.9vh, 4.6rem);
       font-weight: 800;
       letter-spacing: -0.03em;
       line-height: 1;
@@ -1375,7 +1421,7 @@
 
     .sx-kicker {
       font-family: var(--mono);
-      font-size: 0.78rem;
+      font-size: clamp(0.74rem, 0.95vh, 0.95rem);
       letter-spacing: 0.11em;
       text-transform: uppercase;
       color: var(--gold);
@@ -1386,19 +1432,26 @@
 
     .sx-copy {
       color: var(--warm-grey);
-      font-size: 1.1rem;
+      font-size: clamp(1rem, 1.42vh, 1.3rem);
       line-height: 1.85;
-      max-width: 42ch;
+      max-width: 42ch;   /* line length stays controlled as type grows */
     }
 
     .sx-copy strong { color: var(--off-white); font-weight: 500; }
 
-    .sx-right { position: relative; }
+    .sx-right {
+      position: relative;
+      display: flex;
+      align-items: flex-start;   /* diagram reads with the narrative, not
+                                    floating below it on tall screens */
+      justify-content: flex-end;
+      min-height: 0;
+    }
 
     .sx-svg {
       width: 100%;
       height: auto;
-      max-height: 60vh;
+      max-height: clamp(360px, 58vh, 720px);
       display: block;
       margin-left: auto;
       overflow: visible;
@@ -1619,6 +1672,13 @@
     /* ---------- section label rules ---------- */
     .section-eyebrow { position: relative; }
 
+    /* Tall desktop displays: widen the composition and give the diagram a
+       larger share so it can grow vertically instead of leaving dead bands. */
+    @media (min-width: 1200px) and (min-height: 1000px) {
+      .sx-main { grid-template-columns: minmax(0, 0.70fr) minmax(0, 1.30fr); }
+      .sx-panels { min-height: clamp(280px, 24vh, 440px); }
+    }
+
     /* RESPONSIVE */
     @media (max-width: 768px) {
       nav { padding: 1rem 1.5rem; }
@@ -1651,9 +1711,22 @@
     @media (max-width: 900px) {
       .progress-rail { display: none; }
 
-      .sysevo { height: auto !important; margin: 2.5rem 0 0; }
+      /* mobile keeps the approved sizes exactly — the desktop clamps and the
+         removed outer margin must not leak into the stacked treatment */
+      .sysevo { height: auto !important; margin: 1.5rem 0 0; }
+      .sx-kicker { font-size: 0.78rem; }
+      .sx-copy { font-size: 1.1rem; }
+      .sx-rail li { min-height: 64px; }
       .sysevo-stage { position: static !important; height: auto !important; }
-      .sysevo-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .sysevo-inner {
+        grid-template-rows: auto auto;
+        row-gap: 0;
+        width: 100%;          /* desktop clamp width must not apply */
+        padding-block: 0;     /* desktop gutter must not apply */
+        height: auto;
+      }
+      .sx-main { grid-template-columns: 1fr; gap: 2rem; }
+      .sx-head .section-title { font-size: clamp(1.55rem, 2.5vw, 2.3rem); padding-bottom: 0; margin-bottom: 3.5rem; }
       .sx-left { grid-template-columns: 1fr; gap: 0; }
       .sx-rail { display: none; }
       .sx-panels { min-height: 0; }
@@ -1692,6 +1765,7 @@
       .flow-step { padding: 1rem 0 1rem 1.25rem; border-top: none; border-left: 1px solid rgba(240,90,40,0.28); }
       .flow-step::after { top: 1.35rem; left: -3.5px; }
 
+      .footer-links { justify-content: center; }
       .career-item { padding-left: 1.5rem; }
       .career-item::before { top: 2.75rem; }
     }
@@ -1752,8 +1826,8 @@
     <a href="#" class="nav-name">Karl Ohlemann</a>
     <ul class="nav-links">
       <li><a href="#career">Career</a></li>
-      <li><a href="#technology">Technology & AI</a></li>
       <li><a href="#ksig">KSIG Advisors</a></li>
+      <li><a href="#technology">Technology & AI</a></li>
       <li><a href="#credentials">Credentials</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -1761,8 +1835,8 @@
     <div class="mobile-nav" id="mobileNav" hidden>
       <ul class="mobile-nav-list">
         <li><a href="#career">Career</a></li>
-        <li><a href="#technology">Technology &amp; AI</a></li>
         <li><a href="#ksig">KSIG Advisors</a></li>
+        <li><a href="#technology">Technology &amp; AI</a></li>
         <li><a href="#credentials">Credentials</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -1817,55 +1891,6 @@
         <p>Legal and commercial strategy has been a meaningful part of that work. Over 25+ years I've worked closely with specialized outside counsel across contracts, employment, transactions, and regulatory matters — staying deeply involved in analysis, drafting, negotiation, and risk while retaining responsibility for the business judgment behind the decision.</p>
         <p>I've scaled a company from zero to <strong>$30M+ ARR</strong>, built teams of 200+, raised growth capital, and evaluated private-equity acquisition offers from the ownership seat. Most recently I helped deliver a transformation from a <strong>$242K net loss to $2.34M net profit</strong> as revenue grew from $5.1M to $9.2M, with financial records and controls tested through three forensic accounting reviews with minimal corrective adjustment.</p>
         <p>Complex situations with high stakes and no clear playbook are where I do my best work.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- TECHNOLOGY & AI -->
-  <section class="tech" id="technology">
-    <div class="tech-inner">
-      <p class="section-eyebrow reveal">Technology & AI</p>
-      <h2 class="section-title reveal">Technology has always been part of how I operate.</h2>
-
-      <div class="sysevo" id="sysevo">
-        <div class="sysevo-stage">
-          <div class="sysevo-inner">
-            <div class="sx-left">
-              <ol class="sx-rail"><li data-stage="0"><span class="sx-rail-num">01</span><span class="sx-rail-line" aria-hidden="true"></span></li><li data-stage="1"><span class="sx-rail-num">02</span><span class="sx-rail-line" aria-hidden="true"></span></li><li data-stage="2"><span class="sx-rail-num">03</span><span class="sx-rail-line" aria-hidden="true"></span></li></ol>
-              <div class="sx-panels"><article class="sx-panel" data-stage="0"><p class="sx-num">01</p><p class="sx-kicker">Nike · Business ↔ Technology</p><p class="sx-copy">At <strong>Nike World Headquarters</strong>, I was designated a Corporate Information Technology &ldquo;Super User,&rdquo; working between developers, business teams, retail operations, employees, and customers during new-system implementations. I built and led Nike Retail Special Orders and helped develop its early internet-based purchasing capability during Nike's transition toward retail e-commerce.</p></article><article class="sx-panel" data-stage="1"><p class="sx-num">02</p><p class="sx-kicker">Founder-Operator · Systems as Operating Leverage</p><p class="sx-copy">Later, as a founder and CEO/CFO, I directly led strategy, innovation, technology implementation, and business systems while scaling operating companies.</p></article><article class="sx-panel" data-stage="2"><p class="sx-num">03</p><p class="sx-kicker">BlackBoxx.ai · AI Systems and Automation</p><p class="sx-copy">Today, that work extends into AI systems, agentic workflows, automation, technology strategy, and integrating AI into finance, operations, research, and executive decision-making.</p></article></div>
-            </div>
-            <div class="sx-right"><svg class="sx-svg" viewBox="55 25 510 370" role="img" aria-label="Diagram of Karl's systems work evolving from business-technology translation to operating systems to AI orchestration." xmlns="http://www.w3.org/2000/svg"><g class="sx-lattice" aria-hidden="true"><line x1="40" y1="0" x2="40" y2="420"/><line x1="100" y1="0" x2="100" y2="420"/><line x1="160" y1="0" x2="160" y2="420"/><line x1="220" y1="0" x2="220" y2="420"/><line x1="280" y1="0" x2="280" y2="420"/><line x1="340" y1="0" x2="340" y2="420"/><line x1="400" y1="0" x2="400" y2="420"/><line x1="460" y1="0" x2="460" y2="420"/><line x1="520" y1="0" x2="520" y2="420"/><line x1="580" y1="0" x2="580" y2="420"/><line x1="640" y1="0" x2="640" y2="420"/><line x1="0" y1="30" x2="640" y2="30"/><line x1="0" y1="90" x2="640" y2="90"/><line x1="0" y1="150" x2="640" y2="150"/><line x1="0" y1="210" x2="640" y2="210"/><line x1="0" y1="270" x2="640" y2="270"/><line x1="0" y1="330" x2="640" y2="330"/><line x1="0" y1="390" x2="640" y2="390"/></g><g class="sx-stage" data-stage="0" aria-hidden="true"><line class="sx-edge" x1="320.0" y1="210.0" x2="320.0" y2="60.0" style="--i:0"/><line class="sx-edge" x1="320.0" y1="210.0" x2="462.7" y2="163.6" style="--i:1"/><line class="sx-edge" x1="320.0" y1="210.0" x2="408.2" y2="331.4" style="--i:2"/><line class="sx-edge" x1="320.0" y1="210.0" x2="231.8" y2="331.4" style="--i:3"/><line class="sx-edge" x1="320.0" y1="210.0" x2="177.3" y2="163.6" style="--i:4"/><circle class="sx-hub" cx="320.0" cy="210.0" r="42"/><text class="sx-hubtext" x="320.0" y="207.5">NIKE RETAIL</text><text class="sx-hubtext" x="320.0" y="220.5">SPECIAL ORDERS</text><circle class="sx-node" cx="320.0" cy="60.0" r="6" style="--i:0"/><text class="sx-label" x="320.0" y="42.0" text-anchor="middle" style="--i:0">IT</text><circle class="sx-node" cx="462.7" cy="163.6" r="6" style="--i:1"/><text class="sx-label" x="476.7" y="167.6" text-anchor="start" style="--i:1">Business Leadership</text><circle class="sx-node" cx="408.2" cy="331.4" r="6" style="--i:2"/><text class="sx-label" x="422.2" y="335.4" text-anchor="start" style="--i:2">Retail Operations</text><circle class="sx-node" cx="231.8" cy="331.4" r="6" style="--i:3"/><text class="sx-label" x="217.8" y="335.4" text-anchor="end" style="--i:3">Employees</text><circle class="sx-node" cx="177.3" cy="163.6" r="6" style="--i:4"/><text class="sx-label" x="163.3" y="167.6" text-anchor="end" style="--i:4">Consumers</text></g><g class="sx-stage" data-stage="1" aria-hidden="true"><line class="sx-edge" x1="320.0" y1="210.0" x2="320.0" y2="60.0" style="--i:0"/><line class="sx-edge" x1="320.0" y1="210.0" x2="462.7" y2="163.6" style="--i:1"/><line class="sx-edge" x1="320.0" y1="210.0" x2="408.2" y2="331.4" style="--i:2"/><line class="sx-edge" x1="320.0" y1="210.0" x2="231.8" y2="331.4" style="--i:3"/><line class="sx-edge" x1="320.0" y1="210.0" x2="177.3" y2="163.6" style="--i:4"/><circle class="sx-hub" cx="320.0" cy="210.0" r="42"/><text class="sx-hubtext" x="320.0" y="207.5">OPERATING</text><text class="sx-hubtext" x="320.0" y="220.5">COMPANY</text><circle class="sx-node" cx="320.0" cy="60.0" r="6" style="--i:0"/><text class="sx-label" x="320.0" y="42.0" text-anchor="middle" style="--i:0">Finance Systems</text><circle class="sx-node" cx="462.7" cy="163.6" r="6" style="--i:1"/><text class="sx-label" x="476.7" y="167.6" text-anchor="start" style="--i:1">Reporting</text><circle class="sx-node" cx="408.2" cy="331.4" r="6" style="--i:2"/><text class="sx-label" x="422.2" y="335.4" text-anchor="start" style="--i:2">Workflows</text><circle class="sx-node" cx="231.8" cy="331.4" r="6" style="--i:3"/><text class="sx-label" x="217.8" y="335.4" text-anchor="end" style="--i:3">Capital</text><circle class="sx-node" cx="177.3" cy="163.6" r="6" style="--i:4"/><text class="sx-label" x="163.3" y="167.6" text-anchor="end" style="--i:4">Technology</text></g><g class="sx-stage" data-stage="2" aria-hidden="true"><line class="sx-edge" x1="320.0" y1="210.0" x2="320.0" y2="60.0" style="--i:0"/><line class="sx-edge" x1="320.0" y1="210.0" x2="462.7" y2="163.6" style="--i:1"/><line class="sx-edge" x1="320.0" y1="210.0" x2="408.2" y2="331.4" style="--i:2"/><line class="sx-edge" x1="320.0" y1="210.0" x2="231.8" y2="331.4" style="--i:3"/><line class="sx-edge" x1="320.0" y1="210.0" x2="177.3" y2="163.6" style="--i:4"/><circle class="sx-hub" cx="320.0" cy="210.0" r="42"/><text class="sx-hubtext" x="320.0" y="207.5">AGENT</text><text class="sx-hubtext" x="320.0" y="220.5">ORCHESTRATION</text><circle class="sx-node" cx="320.0" cy="60.0" r="6" style="--i:0"/><text class="sx-label" x="320.0" y="42.0" text-anchor="middle" style="--i:0">Specialized Agents</text><circle class="sx-node" cx="462.7" cy="163.6" r="6" style="--i:1"/><text class="sx-label" x="476.7" y="167.6" text-anchor="start" style="--i:1">Automation</text><circle class="sx-node" cx="408.2" cy="331.4" r="6" style="--i:2"/><text class="sx-label" x="422.2" y="335.4" text-anchor="start" style="--i:2">Integration</text><circle class="sx-node" cx="231.8" cy="331.4" r="6" style="--i:3"/><text class="sx-label" x="217.8" y="335.4" text-anchor="end" style="--i:3">Validation</text><circle class="sx-node" cx="177.3" cy="163.6" r="6" style="--i:4"/><text class="sx-label" x="163.3" y="167.6" text-anchor="end" style="--i:4">Decision Support</text></g></svg></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="tech-grid">
-        <div class="tech-card">
-          <p class="tech-card-org">Nike</p>
-          <p class="tech-card-title">Corporate IT Super User</p>
-          <p class="tech-card-desc">Business ↔ technology translation and early internet commerce.</p>
-        </div>
-        <div class="tech-card">
-          <p class="tech-card-org">MIT Sloan</p>
-          <p class="tech-card-title">Executive Education</p>
-          <p class="tech-card-desc">Management · Innovation · Technology · AI</p>
-        </div>
-        <div class="tech-card">
-          <p class="tech-card-org">BlackBoxx.ai</p>
-          <p class="tech-card-title">AI Systems Lab</p>
-          <p class="tech-card-desc">Agents · Automation · Orchestration · Integration</p>
-        </div>
-      </div>
-
-      <div class="blackboxx">
-        <span class="blackboxx-bar" aria-hidden="true"></span>
-        <p class="blackboxx-label">Independent AI Systems Lab · Since October 2023</p>
-        <h3 class="blackboxx-title">BlackBoxx.ai</h3>
-        <p class="blackboxx-role">Principal | AI Systems and Automation Architect</p>
-        <p class="blackboxx-desc">BlackBoxx.ai is an independent AI Systems Lab focused on building and pressure-testing practical agentic systems, automation, orchestration, and AI integration across real-world business workflows.</p>
-        <p class="blackboxx-desc">I design and test multi-agent systems, agent specialization, AI/tool integration, workflow automation, and AI-enabled operating systems — applying emerging capabilities to finance, research, executive decision support, operations, and business-process automation.</p>
-        <div class="flowdiag"><p class="flowdiag-cap">Conceptual architecture · how an agentic workflow is structured and pressure-tested</p><ol class="flow-steps"><li class="flow-step" style="--i:0"><span class="flow-num">01</span><p class="flow-title">Business Inputs</p><p class="flow-desc">Finance, operations, and research inputs entering a defined workflow.</p></li><li class="flow-step" style="--i:1"><span class="flow-num">02</span><p class="flow-title">Specialized Agents</p><p class="flow-desc">Task-scoped agents with defined tools and responsibilities.</p></li><li class="flow-step" style="--i:2"><span class="flow-num">03</span><p class="flow-title">Validation &amp; Exceptions</p><p class="flow-desc">Checks and tolerances, with judgment routed to a human.</p></li><li class="flow-step" style="--i:3"><span class="flow-num">04</span><p class="flow-title">Executive Decision</p><p class="flow-desc">Reporting and decision support delivered to the operator.</p></li></ol></div>
-        <a href="https://blackboxx.ai" class="btn-secondary btn-signal" style="margin-top:1.5rem;" target="_blank" rel="noopener">Explore BlackBoxx.ai →</a>
       </div>
     </div>
   </section>
@@ -2014,6 +2039,58 @@
 
 
 
+  <!-- TECHNOLOGY & AI -->
+  <section class="tech" id="technology">
+    <div class="tech-inner">
+      <div class="sysevo" id="sysevo">
+        <div class="sysevo-stage">
+          <div class="sysevo-inner">
+            <header class="sx-head">
+              <p class="section-eyebrow reveal">Technology & AI</p>
+              <h2 class="section-title reveal">Technology has always been part of how I operate.</h2>
+            </header>
+            <div class="sx-main">
+            <div class="sx-left">
+              <ol class="sx-rail"><li data-stage="0"><span class="sx-rail-num">01</span><span class="sx-rail-line" aria-hidden="true"></span></li><li data-stage="1"><span class="sx-rail-num">02</span><span class="sx-rail-line" aria-hidden="true"></span></li><li data-stage="2"><span class="sx-rail-num">03</span><span class="sx-rail-line" aria-hidden="true"></span></li></ol>
+              <div class="sx-panels"><article class="sx-panel" data-stage="0"><p class="sx-num">01</p><p class="sx-kicker">Nike · Business ↔ Technology</p><p class="sx-copy">At <strong>Nike World Headquarters</strong>, I was designated a Corporate Information Technology &ldquo;Super User,&rdquo; working between developers, business teams, retail operations, employees, and customers during new-system implementations. I built and led Nike Retail Special Orders and helped develop its early internet-based purchasing capability during Nike's transition toward retail e-commerce.</p></article><article class="sx-panel" data-stage="1"><p class="sx-num">02</p><p class="sx-kicker">Founder-Operator · Systems as Operating Leverage</p><p class="sx-copy">Later, as a founder and CEO/CFO, I directly led strategy, innovation, technology implementation, and business systems while scaling operating companies.</p></article><article class="sx-panel" data-stage="2"><p class="sx-num">03</p><p class="sx-kicker">BlackBoxx.ai · AI Systems and Automation</p><p class="sx-copy">Today, that work extends into AI systems, agentic workflows, automation, technology strategy, and integrating AI into finance, operations, research, and executive decision-making.</p></article></div>
+            </div>
+            <div class="sx-right"><svg class="sx-svg" viewBox="55 25 510 370" role="img" aria-label="Diagram of Karl's systems work evolving from business-technology translation to operating systems to AI orchestration." xmlns="http://www.w3.org/2000/svg"><g class="sx-lattice" aria-hidden="true"><line x1="40" y1="0" x2="40" y2="420"/><line x1="100" y1="0" x2="100" y2="420"/><line x1="160" y1="0" x2="160" y2="420"/><line x1="220" y1="0" x2="220" y2="420"/><line x1="280" y1="0" x2="280" y2="420"/><line x1="340" y1="0" x2="340" y2="420"/><line x1="400" y1="0" x2="400" y2="420"/><line x1="460" y1="0" x2="460" y2="420"/><line x1="520" y1="0" x2="520" y2="420"/><line x1="580" y1="0" x2="580" y2="420"/><line x1="640" y1="0" x2="640" y2="420"/><line x1="0" y1="30" x2="640" y2="30"/><line x1="0" y1="90" x2="640" y2="90"/><line x1="0" y1="150" x2="640" y2="150"/><line x1="0" y1="210" x2="640" y2="210"/><line x1="0" y1="270" x2="640" y2="270"/><line x1="0" y1="330" x2="640" y2="330"/><line x1="0" y1="390" x2="640" y2="390"/></g><g class="sx-stage" data-stage="0" aria-hidden="true"><line class="sx-edge" x1="320.0" y1="210.0" x2="320.0" y2="60.0" style="--i:0"/><line class="sx-edge" x1="320.0" y1="210.0" x2="462.7" y2="163.6" style="--i:1"/><line class="sx-edge" x1="320.0" y1="210.0" x2="408.2" y2="331.4" style="--i:2"/><line class="sx-edge" x1="320.0" y1="210.0" x2="231.8" y2="331.4" style="--i:3"/><line class="sx-edge" x1="320.0" y1="210.0" x2="177.3" y2="163.6" style="--i:4"/><circle class="sx-hub" cx="320.0" cy="210.0" r="42"/><text class="sx-hubtext" x="320.0" y="207.5">NIKE RETAIL</text><text class="sx-hubtext" x="320.0" y="220.5">SPECIAL ORDERS</text><circle class="sx-node" cx="320.0" cy="60.0" r="6" style="--i:0"/><text class="sx-label" x="320.0" y="42.0" text-anchor="middle" style="--i:0">IT</text><circle class="sx-node" cx="462.7" cy="163.6" r="6" style="--i:1"/><text class="sx-label" x="476.7" y="167.6" text-anchor="start" style="--i:1">Business Leadership</text><circle class="sx-node" cx="408.2" cy="331.4" r="6" style="--i:2"/><text class="sx-label" x="422.2" y="335.4" text-anchor="start" style="--i:2">Retail Operations</text><circle class="sx-node" cx="231.8" cy="331.4" r="6" style="--i:3"/><text class="sx-label" x="217.8" y="335.4" text-anchor="end" style="--i:3">Employees</text><circle class="sx-node" cx="177.3" cy="163.6" r="6" style="--i:4"/><text class="sx-label" x="163.3" y="167.6" text-anchor="end" style="--i:4">Consumers</text></g><g class="sx-stage" data-stage="1" aria-hidden="true"><line class="sx-edge" x1="320.0" y1="210.0" x2="320.0" y2="60.0" style="--i:0"/><line class="sx-edge" x1="320.0" y1="210.0" x2="462.7" y2="163.6" style="--i:1"/><line class="sx-edge" x1="320.0" y1="210.0" x2="408.2" y2="331.4" style="--i:2"/><line class="sx-edge" x1="320.0" y1="210.0" x2="231.8" y2="331.4" style="--i:3"/><line class="sx-edge" x1="320.0" y1="210.0" x2="177.3" y2="163.6" style="--i:4"/><circle class="sx-hub" cx="320.0" cy="210.0" r="42"/><text class="sx-hubtext" x="320.0" y="207.5">OPERATING</text><text class="sx-hubtext" x="320.0" y="220.5">COMPANY</text><circle class="sx-node" cx="320.0" cy="60.0" r="6" style="--i:0"/><text class="sx-label" x="320.0" y="42.0" text-anchor="middle" style="--i:0">Finance Systems</text><circle class="sx-node" cx="462.7" cy="163.6" r="6" style="--i:1"/><text class="sx-label" x="476.7" y="167.6" text-anchor="start" style="--i:1">Reporting</text><circle class="sx-node" cx="408.2" cy="331.4" r="6" style="--i:2"/><text class="sx-label" x="422.2" y="335.4" text-anchor="start" style="--i:2">Workflows</text><circle class="sx-node" cx="231.8" cy="331.4" r="6" style="--i:3"/><text class="sx-label" x="217.8" y="335.4" text-anchor="end" style="--i:3">Capital</text><circle class="sx-node" cx="177.3" cy="163.6" r="6" style="--i:4"/><text class="sx-label" x="163.3" y="167.6" text-anchor="end" style="--i:4">Technology</text></g><g class="sx-stage" data-stage="2" aria-hidden="true"><line class="sx-edge" x1="320.0" y1="210.0" x2="320.0" y2="60.0" style="--i:0"/><line class="sx-edge" x1="320.0" y1="210.0" x2="462.7" y2="163.6" style="--i:1"/><line class="sx-edge" x1="320.0" y1="210.0" x2="408.2" y2="331.4" style="--i:2"/><line class="sx-edge" x1="320.0" y1="210.0" x2="231.8" y2="331.4" style="--i:3"/><line class="sx-edge" x1="320.0" y1="210.0" x2="177.3" y2="163.6" style="--i:4"/><circle class="sx-hub" cx="320.0" cy="210.0" r="42"/><text class="sx-hubtext" x="320.0" y="207.5">AGENT</text><text class="sx-hubtext" x="320.0" y="220.5">ORCHESTRATION</text><circle class="sx-node" cx="320.0" cy="60.0" r="6" style="--i:0"/><text class="sx-label" x="320.0" y="42.0" text-anchor="middle" style="--i:0">Specialized Agents</text><circle class="sx-node" cx="462.7" cy="163.6" r="6" style="--i:1"/><text class="sx-label" x="476.7" y="167.6" text-anchor="start" style="--i:1">Automation</text><circle class="sx-node" cx="408.2" cy="331.4" r="6" style="--i:2"/><text class="sx-label" x="422.2" y="335.4" text-anchor="start" style="--i:2">Integration</text><circle class="sx-node" cx="231.8" cy="331.4" r="6" style="--i:3"/><text class="sx-label" x="217.8" y="335.4" text-anchor="end" style="--i:3">Validation</text><circle class="sx-node" cx="177.3" cy="163.6" r="6" style="--i:4"/><text class="sx-label" x="163.3" y="167.6" text-anchor="end" style="--i:4">Decision Support</text></g></svg></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tech-grid">
+        <div class="tech-card">
+          <p class="tech-card-org">Nike</p>
+          <p class="tech-card-title">Corporate IT Super User</p>
+          <p class="tech-card-desc">Business ↔ technology translation and early internet commerce.</p>
+        </div>
+        <div class="tech-card">
+          <p class="tech-card-org">MIT Sloan</p>
+          <p class="tech-card-title">Executive Education</p>
+          <p class="tech-card-desc">Management · Innovation · Technology · AI</p>
+        </div>
+        <div class="tech-card">
+          <p class="tech-card-org">BlackBoxx.ai</p>
+          <p class="tech-card-title">AI Systems Lab</p>
+          <p class="tech-card-desc">Agents · Automation · Orchestration · Integration</p>
+        </div>
+      </div>
+
+      <div class="blackboxx">
+        <span class="blackboxx-bar" aria-hidden="true"></span>
+        <p class="blackboxx-label">Independent AI Systems Lab · Since October 2023</p>
+        <h3 class="blackboxx-title">BlackBoxx.ai</h3>
+        <p class="blackboxx-role">Principal | AI Systems and Automation Architect</p>
+        <p class="blackboxx-desc">BlackBoxx.ai is an independent AI Systems Lab focused on building and pressure-testing practical agentic systems, automation, orchestration, and AI integration across real-world business workflows.</p>
+        <p class="blackboxx-desc">I design and test multi-agent systems, agent specialization, AI/tool integration, workflow automation, and AI-enabled operating systems — applying emerging capabilities to finance, research, executive decision support, operations, and business-process automation.</p>
+        <div class="flowdiag"><p class="flowdiag-cap">Conceptual architecture · how an agentic workflow is structured and pressure-tested</p><ol class="flow-steps"><li class="flow-step" style="--i:0"><span class="flow-num">01</span><p class="flow-title">Business Inputs</p><p class="flow-desc">Finance, operations, and research inputs entering a defined workflow.</p></li><li class="flow-step" style="--i:1"><span class="flow-num">02</span><p class="flow-title">Specialized Agents</p><p class="flow-desc">Task-scoped agents with defined tools and responsibilities.</p></li><li class="flow-step" style="--i:2"><span class="flow-num">03</span><p class="flow-title">Validation &amp; Exceptions</p><p class="flow-desc">Checks and tolerances, with judgment routed to a human.</p></li><li class="flow-step" style="--i:3"><span class="flow-num">04</span><p class="flow-title">Executive Decision</p><p class="flow-desc">Reporting and decision support delivered to the operator.</p></li></ol></div>
+        <a href="https://blackboxx.ai" class="btn-secondary btn-signal" style="margin-top:1.5rem;" target="_blank" rel="noopener">Explore BlackBoxx.ai →</a>
+      </div>
+    </div>
+  </section>
+
   <!-- CREDENTIALS -->
   <section class="credentials" id="credentials">
     <p class="section-eyebrow reveal">Credentials & Recognition</p>
@@ -2156,7 +2233,7 @@
       <a href="https://ksigadvisors.com">KSIG Advisors</a>
       <a href="https://blackboxx.ai" target="_blank">BlackBoxx.ai</a>
       <a href="https://www.linkedin.com/in/karl-ohlemann/" target="_blank">LinkedIn</a>
-      <a href="https://weheartcleelumroslyn.com" target="_blank">WeHeart</a>
+      <a href="https://weheartcleelumroslyn.com" target="_blank" class="footer-long">WeHeartCleElumRoslyn.com</a>
     </div>
   </footer>
 
@@ -2299,15 +2376,16 @@
           sys.style.height = '350vh';
           var st = sys.firstElementChild;
           st.style.position = 'sticky';
-          st.style.top = NAV + 'px';
-          st.style.height = 'calc(100vh - ' + NAV + 'px)';
-          st.style.display = 'flex';
-          st.style.alignItems = 'center';
+          st.style.height = 'auto';
+          st.style.display = 'block';
+          st.style.alignItems = '';
+          centreStage();
           setStage(0);
         } else {
           sys.style.height = '';
           var s2 = sys.firstElementChild;
           s2.style.position = s2.style.top = s2.style.height = s2.style.display = s2.style.alignItems = '';
+          s2.removeAttribute('style');
           current = -1;
           for (var n = 0; n < STAGES; n++) {
             panels[n].classList.remove('active');
@@ -2318,6 +2396,21 @@
 
       var navEl = document.querySelector('nav');
       var NAV = navEl ? Math.round(navEl.getBoundingClientRect().height) : 64;
+
+      /* The sticky stage is only as tall as its composition. Centre it in the
+         usable area so the gutters stay symmetric and, at release, the next
+         section arrives directly beneath it with no empty tail. */
+      function centreStage() {
+        if (!sys) return;
+        var st = sys.firstElementChild;
+        st.style.top = '0px';
+        var h = st.offsetHeight;
+        var free = window.innerHeight - NAV - h;
+        /* centre, but never sit more than 140px below the nav so the first
+           meaningful element stays close to the top on tall displays */
+        var top = NAV + Math.min(140, Math.max(48, Math.round(free / 2)));
+        st.style.top = top + 'px';
+      }
 
       var pinned = mqPinned.matches;
       applyPinned(pinned);
@@ -2420,6 +2513,7 @@
         measurePath();
         var next = mqPinned.matches;
         if (next !== pinned) { pinned = next; applyPinned(pinned); }
+        else if (pinned) { centreStage(); }
         onScroll();
       }, { passive: true });
       frame();
